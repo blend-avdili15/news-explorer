@@ -1,3 +1,5 @@
+import React from "react";
+
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import "./App.css";
@@ -8,15 +10,15 @@ function App() {
     <div className="page">
       <div className="page__content">
         <Header />
-        <Routes>
+        {/* <Routes>
           <Route />
           <Route />
-        </Routes>
+        </Routes> */}
         <Footer />
       </div>
-      <LoginModal />
+      {/* <LoginModal />
       <RegisterModal />
-      <DeleteCardModal />
+      <DeleteCardModal /> */}
     </div>
   );
 }
