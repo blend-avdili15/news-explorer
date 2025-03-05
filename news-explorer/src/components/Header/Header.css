@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0 28px;
+}
+
+.header__title {
+  font-size: 18px;
+}
+
+.header__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header__home {
+  margin-right: 24px;
+  width: 50px;
+}
+
+.header__register {
+  font-size: 18px;
+}
