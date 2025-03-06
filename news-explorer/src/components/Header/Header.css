@@ -6,20 +6,113 @@
 }
 
 .header__title {
+  display: flex;
+  width: 200px;
+  height: 24px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-left: 104px;
+  color: white;
+}
+
+.header__logged-in {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 65px;
+  margin-right: 104px;
+}
+
+.header__articles {
+  width: 114px;
+  height: 24px;
   font-size: 18px;
+  font-weight: 500;
+  color: white;
+  border: none;
+  background: none;
+}
+
+.header__articles:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.header__profile {
+  width: 112px;
+  height: 48px;
+  color: white;
+  border: none;
+  background: none;
+  border: 1px solid white;
+  border-radius: 100px;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header__profile:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.header__profile-button {
+  background: none;
+  border: none;
+  width: 39px;
+  height: 24px;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 0 15px;
+  color: white;
+}
+
+.header__profile-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.header__arrow {
+  width: 17px;
+  height: 24px;
+  padding: 15px;
 }
 
 .header__container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 42px;
+  margin-right: 104px;
 }
 
 .header__home {
-  margin-right: 24px;
   width: 50px;
+  height: 24px;
+  color: white;
+  border: none;
+  background: none;
+}
+
+.header__home:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 .header__register {
   font-size: 18px;
+  font-weight: 500;
+  color: white;
+  width: 176px;
+  height: 48px;
+  border-radius: 100px;
+  background: none;
+  border: 1px solid #ffffff;
+}
+
+.header__register:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
