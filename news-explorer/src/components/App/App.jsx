@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { CurrentUserContext } from "../../utils/contexts/CurrentUserContext";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
+import About from "../About/About";
+import SavedNews from "../SavedNews/SavedNews";
 
 import "./App.css";
 
@@ -12,6 +16,7 @@ import LoginModal from "../LoginModal/LoginModal";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [activeModal, setActiveModal] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
 
   const handleRegisterClick = () => setActiveModal("register");
   const switchToRegister = () => setActiveModal("register");
@@ -54,34 +59,39 @@ function App() {
   };
 
   return (
-    <div className="page">
-      <div className="page__content">
-        <Header
-          isLoggedIn={isLoggedIn}
-          handleRegisterClick={handleRegisterClick}
-          handleLoginClick={handleLoginClick}
-        />
-        {/* <Routes>
-          <Route />
-          <Route />
-        </Routes> */}
-        <Footer />
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        <div className="page__content">
+          <div className="page__main-slide">
+            <Header
+              isLoggedIn={isLoggedIn}
+              handleRegisterClick={() => setActiveModal("register")}
+              handleLoginClick={() => setActiveModal("login")}
+            />
+
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route
+                path="/savedNews"
+                element={isLoggedIn ? <SavedNews /> : <Navigate to="/" />}
+              />
+            </Routes>
+          </div>
+
+          <About />
+          <Footer />
+        </div>
       </div>
+
       <RegisterModal
         isOpen={activeModal === "register"}
-        onClose={closeActiveModal}
-        handleRegisterClick={handleRegisterClick}
-        onSignUp={handleRegister}
-        onSwitchToLogin={switchToLogin}
+        onClose={() => setActiveModal("")}
       />
       <LoginModal
         isOpen={activeModal === "login"}
-        onClose={closeActiveModal}
-        handleLoginClick={handleLoginClick}
-        onSignIn={handleLogIn}
-        onSwitchToRegister={switchToRegister}
+        onClose={() => setActiveModal("")}
       />
-    </div>
+    </CurrentUserContext.Provider>
   );
 }
 

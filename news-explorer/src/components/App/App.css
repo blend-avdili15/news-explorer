@@ -1,13 +1,17 @@
 .page {
-  max-height: 100vh;
+  min-height: 100vh;
 }
 
 .page__content {
   max-width: 1440px;
-  max-height: 576px;
-  height: 100vh;
+  height: auto;
   margin: 0 auto;
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.page__main-slide {
   background-image: url(../../images/main.svg);
   background-repeat: no-repeat;
   background-size: cover;
