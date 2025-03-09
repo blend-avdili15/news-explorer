@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { CurrentUserContext } from "../../utils/contexts/CurrentUserContext";
+import { signIn, signUp, checkToken } from "../../utils/auth";
+import { updateUser } from "../../utils/api";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -24,10 +26,12 @@ function App() {
   const switchToLogin = () => setActiveModal("login");
   const closeActiveModal = () => setActiveModal("");
 
-  const handleRegister = ({ email, password, username }) => {
-    return Register({ email, password, username })
+  const navigate = useNavigate();
+
+  const handleSignUp = ({ email, password, username }) => {
+    return signUp({ email, password, username })
       .then(() => {
-        handlerRegister({ email, password, username });
+        handleSignIn({ email, password, username });
         closeActiveModal();
       })
       .catch((err) => {
@@ -36,8 +40,8 @@ function App() {
       });
   };
 
-  const handleLogIn = ({ email, password }) => {
-    return logIn({ email, password })
+  const handleSignIn = ({ email, password }) => {
+    return signIn({ email, password })
       .then((data) => {
         localStorage.setItem("jwt", data.token);
         setIsLoggedIn(true);
@@ -50,13 +54,46 @@ function App() {
       .then((items) => {
         console.log(items);
         closeActiveModal();
-        //navigate("/profile");
+        navigate("/");
       })
       .catch((err) => {
         console.error("Login error:", err);
         throw err;
       });
   };
+
+  const handleSignOut = () => {
+    localStorage.removeItem("jwt");
+    setCurrentUser(null);
+    setIsLoggedIn(false);
+    navigate("/", { replace: true });
+  };
+
+  // const handleUpdateUser = ({ name, avatar }) => {
+  //   const token = localStorage.getItem("jwt");
+
+  //   return updateUser({ name, username }, token)
+  //     .then((updatedUser) => {
+  //       setCurrentUser(updatedUser);
+  //       closeActiveModal();
+  //     })
+  //     .catch(console.error);
+  // };
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      checkToken(token)
+        .then((user) => {
+          setCurrentUser(user);
+          setIsLoggedIn(true);
+        })
+        .catch(() => {
+          console.error("Invalid token, logging out...");
+          handleSignOut();
+        });
+    }
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -65,6 +102,7 @@ function App() {
           <div className="page__main-slide">
             <Header
               isLoggedIn={isLoggedIn}
+              onSignOut={handleSignOut}
               handleRegisterClick={() => setActiveModal("register")}
               handleLoginClick={() => setActiveModal("login")}
             />
@@ -87,14 +125,14 @@ function App() {
         isOpen={activeModal === "register"}
         onClose={() => setActiveModal("")}
         handleRegisterClick={handleRegisterClick}
-        onSignUp={handleRegister}
+        onSignUp={handleSignUp}
         onSwitchToLogin={switchToLogin}
       />
       <LoginModal
         isOpen={activeModal === "login"}
         onClose={() => setActiveModal("")}
         handleLoginClick={handleLoginClick}
-        onSignIn={handleLogIn}
+        onSignIn={handleSignIn}
         onSwitchToRegister={switchToRegister}
       />
     </CurrentUserContext.Provider>

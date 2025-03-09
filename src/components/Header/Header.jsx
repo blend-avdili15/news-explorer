@@ -2,7 +2,7 @@ import "./Header.css";
 import React, { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import arrow from "../../images/arrow-white.svg";
-import CurrentUserContext from "../../utils/contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../utils/contexts/CurrentUserContext";
 
 function Header({ isLoggedIn, handleRegisterClick }) {
   const currentUser = useContext(CurrentUserContext);

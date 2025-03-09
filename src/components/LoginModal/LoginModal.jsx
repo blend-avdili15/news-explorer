@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal({ onClose, isOpen, onSwitchToRegister }) {
+function LoginModal({ onClose, isOpen, onSwitchToRegister, onSignIn }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
