@@ -14,6 +14,7 @@ import "./App.css";
 
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import SignOutModal from "../SignOutModal/SignOutModal";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,8 +24,9 @@ function App() {
   const [message, setMessage] = useState(""); // State to store backend response
 
   const handleRegisterClick = () => setActiveModal("register");
-  const switchToRegister = () => setActiveModal("register");
   const handleLoginClick = () => setActiveModal("login");
+  const handleSignOutClick = () => setActiveModal("signout");
+  const switchToRegister = () => setActiveModal("register");
   const switchToLogin = () => setActiveModal("login");
   const closeActiveModal = () => setActiveModal("");
 
@@ -68,6 +70,7 @@ function App() {
     setCurrentUser(null);
     setIsLoggedIn(false);
     navigate("/", { replace: true });
+    closeActiveModal();
   };
 
   // const handleUpdateUser = ({ name, avatar }) => {
@@ -114,7 +117,8 @@ function App() {
           <div className="page__main-slide">
             <Header
               isLoggedIn={isLoggedIn}
-              onSignOut={handleSignOut}
+              // onSignOut={handleSignOut}
+              handleSignOutClick={() => setActiveModal("signout")}
               handleRegisterClick={() => setActiveModal("register")}
               handleLoginClick={() => setActiveModal("login")}
             />
@@ -146,6 +150,11 @@ function App() {
         handleLoginClick={handleLoginClick}
         onSignIn={handleSignIn}
         onSwitchToRegister={switchToRegister}
+      />
+      <SignOutModal
+        isOpen={activeModal === "signout"}
+        onClose={closeActiveModal}
+        onSignOut={handleSignOut}
       />
     </CurrentUserContext.Provider>
   );

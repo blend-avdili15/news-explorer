@@ -3,8 +3,9 @@ import React, { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import arrow from "../../images/arrow-white.svg";
 import { CurrentUserContext } from "../../utils/contexts/CurrentUserContext";
+import SignOutModal from "../SignOutModal/SignOutModal";
 
-function Header({ isLoggedIn, handleRegisterClick }) {
+function Header({ isLoggedIn, handleRegisterClick, handleSignOutClick }) {
   const currentUser = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
@@ -21,7 +22,12 @@ function Header({ isLoggedIn, handleRegisterClick }) {
             <p className="header__articles">Saved articles</p>
           </Link>
           <div className="header__profile">
-            <button className="header__profile-button">Blend</button>
+            <button
+              onClick={handleSignOutClick}
+              className="header__profile-button"
+            >
+              Blend
+            </button>
             <img className="header__arrow" src={arrow} alt="header-arrow" />
           </div>
         </div>
