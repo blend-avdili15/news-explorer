@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { CurrentUserContext } from "../../utils/contexts/CurrentUserContext";
 import { signIn, signUp, checkToken } from "../../utils/auth";
-import { updateUser } from "../../utils/api";
+import { updateUser, getItems } from "../../utils/api";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -19,6 +19,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [message, setMessage] = useState(""); // State to store backend response
 
   const handleRegisterClick = () => setActiveModal("register");
   const switchToRegister = () => setActiveModal("register");
@@ -32,6 +34,8 @@ function App() {
     return signUp({ email, password, username })
       .then(() => {
         handleSignIn({ email, password, username });
+      })
+      .then(() => {
         closeActiveModal();
       })
       .catch((err) => {
@@ -50,9 +54,6 @@ function App() {
       .then((user) => {
         console.log(user);
         setCurrentUser(user);
-      })
-      .then((items) => {
-        console.log(items);
         closeActiveModal();
         navigate("/");
       })
@@ -80,6 +81,14 @@ function App() {
   //     .catch(console.error);
   // };
 
+  // useEffects
+
+  // useEffect(() => {
+  //   getItems()
+  //     .then((data) => setMessage(data))
+  //     .catch((err) => console.error("Error fetching:", err));
+  // }, []);
+
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -91,7 +100,10 @@ function App() {
         .catch(() => {
           console.error("Invalid token, logging out...");
           handleSignOut();
-        });
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      setIsLoading(false);
     }
   }, []);
 

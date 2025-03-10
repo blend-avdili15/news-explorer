@@ -11,6 +11,10 @@ export function request(url, options) {
   return fetch(url, options).then(checkResponse);
 }
 
+export function getItems() {
+  return request(`${baseUrl}/api/news`);
+}
+
 export function updateUser({ username }, token) {
   return request(`${baseUrl}/users/me`, {
     method: "PATCH",
