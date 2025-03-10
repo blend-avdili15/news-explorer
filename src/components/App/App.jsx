@@ -21,7 +21,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [message, setMessage] = useState(""); // State to store backend response
+  const [message, setMessage] = useState("");
 
   const handleRegisterClick = () => setActiveModal("register");
   const handleLoginClick = () => setActiveModal("login");
@@ -114,25 +114,22 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__content">
-          <div className="page__main-slide">
-            <Header
-              isLoggedIn={isLoggedIn}
-              // onSignOut={handleSignOut}
-              handleSignOutClick={() => setActiveModal("signout")}
-              handleRegisterClick={() => setActiveModal("register")}
-              handleLoginClick={() => setActiveModal("login")}
+          <Header
+            isLoggedIn={isLoggedIn}
+            // onSignOut={handleSignOut}
+            handleSignOutClick={() => setActiveModal("signout")}
+            handleRegisterClick={() => setActiveModal("register")}
+            handleLoginClick={() => setActiveModal("login")}
+          />
+
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route
+              path="/savedNews"
+              element={isLoggedIn ? <SavedNews /> : <Navigate to="/" />}
             />
+          </Routes>
 
-            <Routes>
-              <Route path="/" element={<Main />} />
-              <Route
-                path="/savedNews"
-                element={isLoggedIn ? <SavedNews /> : <Navigate to="/" />}
-              />
-            </Routes>
-          </div>
-
-          <About />
           <Footer />
         </div>
       </div>

@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 32px 0 28px;
+  z-index: 5;
 }
 
 .header__title {
@@ -14,6 +15,22 @@
   line-height: 24px;
   margin-left: 104px;
   color: white;
+}
+
+.header_black {
+  background-color: white; /* Optional: Change background */
+}
+
+.header__title_black {
+  color: black;
+}
+
+.header__home_black {
+  color: black !important;
+}
+
+.header__articles_black {
+  color: black !important;
 }
 
 .header__logged-in {
@@ -47,7 +64,7 @@
   background: none;
   border: 1px solid white;
   border-radius: 100px;
-  gap: 8px;
+  gap: 18px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -58,6 +75,10 @@
   cursor: pointer;
 }
 
+.header__profile_black {
+  border: 1px solid black !important;
+}
+
 .header__profile-button {
   background: none;
   border: none;
@@ -65,13 +86,17 @@
   height: 24px;
   font-size: 18px;
   font-weight: 500;
-  margin: 0 0 0 15px;
+  margin: 0 0 0 10px;
   color: white;
 }
 
 .header__profile-button:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+.header__profile-button_black {
+  color: black !important;
 }
 
 .header__arrow {
