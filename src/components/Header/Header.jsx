@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import arrowWhite from "../../images/arrow-white.svg";
 import arrowBlack from "../../images/arrow-black.svg";
-import { CurrentUserContext } from "../../utils/contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
 import SignOutModal from "../SignOutModal/SignOutModal";
 
 function Header({ isLoggedIn, handleRegisterClick, handleSignOutClick }) {
