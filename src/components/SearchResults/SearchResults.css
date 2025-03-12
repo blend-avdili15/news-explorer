@@ -1,0 +1,35 @@
+.search__results {
+  width: 100%;
+  background-color: #f5f6f7;
+}
+
+.search__results-container {
+  width: 100%;
+  margin: 0;
+  padding: 80px 106px 80px 102px;
+}
+
+.search__results-title {
+  width: 712px;
+  height: 46px;
+  font-size: 40px;
+  font-weight: 400;
+  color: #1a1b22;
+  margin: 0 0 64px 0;
+}
+
+.search__results-button {
+  width: 299px;
+  height: 64px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #1a1b22;
+  background-color: #e8e8e8;
+  border-radius: 80px;
+  margin: 64px 576px 0;
+  cursor: pointer;
+}
+
+.search__results-button:hover {
+  opacity: 0.6;
+}

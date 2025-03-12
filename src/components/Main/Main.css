@@ -33,7 +33,7 @@
   font-size: 60px;
   font-weight: 400;
   color: white;
-  margin: 0;
+  margin: 80px 0 0 0;
 }
 
 .main__title-span {
@@ -70,6 +70,7 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: 400;
+  margin-bottom: 80px;
   outline: none;
   box-shadow: none;
   text-indent: 20px;

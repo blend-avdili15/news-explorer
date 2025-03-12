@@ -4,6 +4,7 @@
   align-items: center;
   padding: 32px 0 28px;
   z-index: 5;
+  border-bottom: 1px solid #c4c4c4;
 }
 
 .header__title {
@@ -18,7 +19,7 @@
 }
 
 .header_black {
-  background-color: white; /* Optional: Change background */
+  background-color: white;
 }
 
 .header__title_black {
@@ -39,6 +40,10 @@
   align-items: center;
   gap: 65px;
   margin-right: 104px;
+}
+
+.header__nav-item {
+  text-decoration: none;
 }
 
 .header__articles {

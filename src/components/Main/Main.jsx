@@ -1,6 +1,7 @@
 import React from "react";
 import "./Main.css";
 import About from "../About/About";
+import SearchResults from "../SearchResults/SearchResults";
 
 function Main({}) {
   return (
@@ -31,6 +32,7 @@ function Main({}) {
         </form>
       </section>
 
+      <SearchResults />
       <About />
     </main>
   );

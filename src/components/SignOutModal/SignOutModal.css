@@ -37,10 +37,18 @@
   margin-right: 20px;
 }
 
+.sign-out-yes:hover {
+  opacity: 0.6;
+}
+
 .sign-out-cancel {
   background-color: #ccc;
   padding: 10px 15px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.sign-out-cancel:hover {
+  opacity: 0.6;
 }

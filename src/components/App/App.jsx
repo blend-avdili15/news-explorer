@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import { CurrentUserContext } from "../../utils/contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
 import { signIn, signUp, checkToken } from "../../utils/auth";
 import { updateUser, getItems } from "../../utils/api";
 
@@ -15,6 +15,7 @@ import "./App.css";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import SignOutModal from "../SignOutModal/SignOutModal";
+import DeleteCardModal from "../DeleteCardModal/DeleteCardModal";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,6 +27,7 @@ function App() {
   const handleRegisterClick = () => setActiveModal("register");
   const handleLoginClick = () => setActiveModal("login");
   const handleSignOutClick = () => setActiveModal("signout");
+  const handleDeleteClick = () => setActiveModal("delete");
   const switchToRegister = () => setActiveModal("register");
   const switchToLogin = () => setActiveModal("login");
   const closeActiveModal = () => setActiveModal("");
@@ -71,6 +73,16 @@ function App() {
     setIsLoggedIn(false);
     navigate("/", { replace: true });
     closeActiveModal();
+  };
+
+  const handleDeleteCard = () => {
+    const token = localStorage.getItem("jwt");
+
+    deleteItem(selectedCard._id, token)
+      .then(() => {
+        closeActiveModal();
+      })
+      .catch(console.error);
   };
 
   // const handleUpdateUser = ({ name, avatar }) => {
@@ -125,8 +137,17 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route
-              path="/savedNews"
-              element={isLoggedIn ? <SavedNews /> : <Navigate to="/" />}
+              path="/savednews"
+              // element={isLoggedIn ? <SavedNews /> : <Navigate to="/" />}
+              element={
+                isLoggedIn ? (
+                  <SavedNews
+                    handleDeleteClick={() => setActiveModal("delete")}
+                  />
+                ) : (
+                  <Navigate to="/" />
+                )
+              }
             />
           </Routes>
 
@@ -152,6 +173,11 @@ function App() {
         isOpen={activeModal === "signout"}
         onClose={closeActiveModal}
         onSignOut={handleSignOut}
+      />
+      <DeleteCardModal
+        isOpen={activeModal === "delete"}
+        onClose={closeActiveModal}
+        onDelete={handleDeleteCard}
       />
     </CurrentUserContext.Provider>
   );

@@ -1,52 +1,45 @@
 import "./ItemCard.css";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
+import { useLocation } from "react-router-dom";
+import main from "../../images/main.svg";
 
-function ItemCard({ item, onCardClick, onCardLike }) {
-  // const currentUser = useContext(CurrentUserContext);
+function ItemCard({ handleDeleteClick }) {
+  const currentUser = useContext(CurrentUserContext);
+  const location = useLocation();
+  const isSavedNewsPage = location.pathname === "/savednews";
 
-  // const isLiked = item.likes.some((id) => id === currentUser?._id);
-
-  //   const itemLikeButtonClassName = `card__like-button ${
-  //     isLiked ? "card__like-button_active" : ""
-  //   }`;
-
-  //   /const handleLike = () => {
-  //     if (onCardLike) {
-  //       onCardLike(item._id, isLiked);
-  //     }
-  //   };
+  console.log("Current Route:", location.pathname);
 
   return (
     <li className="card">
-      <div className="card__info">
-        <h2 className="card__name">Card</h2>
-        <button className="card__like-button">Like</button>
+      <img className="card__image" src={main} />
+
+      {isSavedNewsPage && <p className="card__category">Nature</p>}
+
+      {isSavedNewsPage ? (
+        <button
+          onClick={handleDeleteClick}
+          className="card__delete-button"
+        ></button>
+      ) : (
+        <button className="card__bookmark"></button>
+      )}
+
+      <div className="card__content">
+        <p className="card__date">November 4, 2020</p>
+        <h2 className="card__title">
+          Everyone Needs a Special 'Sit Spot' in Nature
+        </h2>
+        <p className="card__descripition">
+          Ever since I read Richard Louv's influential book, "Last Child in the
+          Woods," the idea of having a special "sit spot" has stuck with me.
+          This advice, which Louv attributes to nature educator Jon Young, is
+          for both adults and children to find...
+        </p>
+        <p className="card__reference">TREEHUGGER</p>
       </div>
-
-      <img src="" alt="" className="card__image" />
     </li>
-
-    // <li className="card">
-    //   <div className="card__info">
-    //     <h2 className="card__name"></h2>
-    //     {/* // {currentUser && (
-    //       <button
-    //         // onClick={handleLike}
-    //         // className={itemLikeButtonClassName}
-    //         aria-label="Like"
-    //       ></button>
-    //     )} */}
-    //     <button className="item__like-button"></button>
-    //   </div>
-
-    //   <img
-    //     // onClick={() => onCardClick(item)}
-    //     className="card__image"
-    //     // src={item.imageUrl}
-    //     // alt={item.name}
-    //   />
-    // </li>
   );
 }
 

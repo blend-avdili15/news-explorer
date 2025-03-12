@@ -4,13 +4,12 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import arrowWhite from "../../images/arrow-white.svg";
 import arrowBlack from "../../images/arrow-black.svg";
 import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
-import SignOutModal from "../SignOutModal/SignOutModal";
 
 function Header({ isLoggedIn, handleRegisterClick, handleSignOutClick }) {
   const currentUser = useContext(CurrentUserContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const isSavedNews = location.pathname === "/savedNews";
+  const isSavedNews = location.pathname === "/savednews";
 
   return (
     <header className="header">
@@ -31,7 +30,7 @@ function Header({ isLoggedIn, handleRegisterClick, handleSignOutClick }) {
               Home
             </p>
           </Link>
-          <Link to="/savedNews" className="header__nav-item">
+          <Link to="/savednews" className="header__nav-item">
             <p
               className={`header__articles ${
                 isSavedNews ? "header__articles_black" : ""
