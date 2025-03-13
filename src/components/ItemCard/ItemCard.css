@@ -1,6 +1,11 @@
 .cards__list {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .card {

@@ -2,8 +2,33 @@ import React from "react";
 import "./Main.css";
 import About from "../About/About";
 import SearchResults from "../SearchResults/SearchResults";
+import SearchForm from "../SearchForm/SearchForm";
+import { fetchNews } from "../../utils/newsApi";
+import { useState } from "react";
 
-function Main({}) {
+function Main({ handleSaveArticle, savedArticles }) {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSearch = async (query) => {
+    setLoading(true);
+    setError("");
+    setArticles([]);
+
+    try {
+      const newsArticles = await fetchNews(query);
+      if (newsArticles.length === 0) {
+        setError("Nothing Found");
+      }
+      setArticles(newsArticles);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main className="main">
       <section className="main__content">
@@ -18,21 +43,17 @@ function Main({}) {
           </p>
         </div>
 
-        <form className="main__search">
-          <div className="main__search-container">
-            <input
-              type="text"
-              className="main__search-input"
-              placeholder="Enter topic"
-            />
-            <button type="submit" className="main__search-button">
-              Search
-            </button>
-          </div>
-        </form>
+        <SearchForm onSearch={handleSearch} />
       </section>
 
-      <SearchResults />
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      <SearchResults
+        articles={articles}
+        handleSaveArticle={handleSaveArticle}
+        savedArticles={savedArticles}
+      />
+
       <About />
     </main>
   );

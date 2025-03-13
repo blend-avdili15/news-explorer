@@ -7,7 +7,6 @@ import { updateUser, getItems } from "../../utils/api";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import About from "../About/About";
 import SavedNews from "../SavedNews/SavedNews";
 
 import "./App.css";
@@ -21,6 +20,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
+  const [savedArticles, setSavedArticles] = useState([]); // Store saved articles
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState("");
 
@@ -36,12 +36,8 @@ function App() {
 
   const handleSignUp = ({ email, password, username }) => {
     return signUp({ email, password, username })
-      .then(() => {
-        handleSignIn({ email, password, username });
-      })
-      .then(() => {
-        closeActiveModal();
-      })
+      .then(() => handleSignIn({ email, password }))
+      .then(() => setActiveModal(""))
       .catch((err) => {
         console.error("Sign in error:", err);
         throw err;
@@ -56,9 +52,8 @@ function App() {
         return checkToken(data.token);
       })
       .then((user) => {
-        console.log(user);
         setCurrentUser(user);
-        closeActiveModal();
+        setActiveModal("");
         navigate("/");
       })
       .catch((err) => {
@@ -71,8 +66,9 @@ function App() {
     localStorage.removeItem("jwt");
     setCurrentUser(null);
     setIsLoggedIn(false);
+    setSavedArticles([]);
     navigate("/", { replace: true });
-    closeActiveModal();
+    setActiveModal("");
   };
 
   const handleDeleteCard = () => {
@@ -83,6 +79,20 @@ function App() {
         closeActiveModal();
       })
       .catch(console.error);
+  };
+
+  const handleSaveArticle = (article) => {
+    if (!isLoggedIn) {
+      setActiveModal("login");
+      return;
+    }
+
+    const isAlreadySaved = savedArticles.some(
+      (saved) => saved.url === article.url
+    );
+    if (!isAlreadySaved) {
+      setSavedArticles((prev) => [...prev, article]);
+    }
   };
 
   // const handleUpdateUser = ({ name, avatar }) => {
@@ -128,20 +138,27 @@ function App() {
         <div className="page__content">
           <Header
             isLoggedIn={isLoggedIn}
-            // onSignOut={handleSignOut}
             handleSignOutClick={() => setActiveModal("signout")}
             handleRegisterClick={() => setActiveModal("register")}
             handleLoginClick={() => setActiveModal("login")}
           />
 
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route
+              path="/"
+              element={
+                <Main
+                  handleSaveArticle={handleSaveArticle}
+                  savedArticles={savedArticles}
+                />
+              }
+            />
             <Route
               path="/savednews"
-              // element={isLoggedIn ? <SavedNews /> : <Navigate to="/" />}
               element={
                 isLoggedIn ? (
                   <SavedNews
+                    savedArticles={savedArticles || []}
                     handleDeleteClick={() => setActiveModal("delete")}
                   />
                 ) : (
@@ -158,26 +175,26 @@ function App() {
       <RegisterModal
         isOpen={activeModal === "register"}
         onClose={() => setActiveModal("")}
-        handleRegisterClick={handleRegisterClick}
+        // handleRegisterClick={handleRegisterClick}
         onSignUp={handleSignUp}
-        onSwitchToLogin={switchToLogin}
+        onSwitchToLogin={() => setActiveModal("login")}
       />
       <LoginModal
         isOpen={activeModal === "login"}
         onClose={() => setActiveModal("")}
-        handleLoginClick={handleLoginClick}
+        // handleLoginClick={handleLoginClick}
         onSignIn={handleSignIn}
-        onSwitchToRegister={switchToRegister}
+        onSwitchToRegister={() => setActiveModal("register")}
       />
       <SignOutModal
         isOpen={activeModal === "signout"}
-        onClose={closeActiveModal}
+        onClose={() => setActiveModal("")}
         onSignOut={handleSignOut}
       />
       <DeleteCardModal
         isOpen={activeModal === "delete"}
-        onClose={closeActiveModal}
-        onDelete={handleDeleteCard}
+        onClose={() => setActiveModal("")}
+        // onDelete={handleDeleteCard}
       />
     </CurrentUserContext.Provider>
   );
