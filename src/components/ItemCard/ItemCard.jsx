@@ -1,35 +1,33 @@
 import "./ItemCard.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
 import { useLocation } from "react-router-dom";
 
 function ItemCard({
-  handleDeleteClick,
-  handleSaveClick = () => {},
+  handleDeleteClick, // = () => {},
+  handleSaveClick, // = () => {},
   saved,
   article,
+  savedArticles,
 }) {
   const currentUser = useContext(CurrentUserContext);
   const location = useLocation();
   const isSavedNewsPage = location.pathname === "/savednews";
-  const [isBookmarked, setIsBookmarked] = useState(saved); // ✅ Uses "saved" prop to track state
 
-  useEffect(() => {
-    setIsBookmarked(saved); // ✅ Update state when props change
-  }, [saved]);
+  const isBookmarked = savedArticles.some(
+    (savedArticle) => savedArticle.url === article.url
+  );
+
+  const bookmarkButtonClass = `card__bookmark ${
+    isBookmarked ? "card__bookmark_active" : ""
+  }`;
 
   const handleBookmarkClick = () => {
-    if (!handleSaveClick) {
-      console.error("handleSaveClick is undefined for article:", article);
-      return;
-    }
-
     if (isBookmarked) {
-      handleDeleteClick(article);
+      handleDeleteClick(article); // ✅ Remove from saved
     } else {
-      handleSaveClick(article);
+      handleSaveClick(article); // ✅ Save article
     }
-    setIsBookmarked(!isBookmarked);
   };
 
   return (
@@ -57,9 +55,7 @@ function ItemCard({
       ) : (
         <button
           onClick={handleBookmarkClick}
-          className={`card__bookmark ${
-            isBookmarked ? "card__bookmark_active" : ""
-          }`}
+          className={bookmarkButtonClass}
           aria-label="Save article"
         />
       )}

@@ -1,5 +1,22 @@
+.modal_opened {
+  opacity: 1;
+  visibility: visible;
+}
+
 .delete__card-modal {
+  position: relative;
+  width: 159px;
+  height: 40px;
+  background-color: white;
+  border-radius: 10px;
+  top: 47px;
+  right: 300px;
 }
 
 .delete__card-heading {
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

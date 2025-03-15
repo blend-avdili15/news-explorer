@@ -3,7 +3,12 @@ import "./SearchResults.css";
 import ItemCard from "../ItemCard/ItemCard";
 import { useState } from "react";
 
-function SearchResults({ articles, handleSaveArticle, savedArticles = [] }) {
+function SearchResults({
+  articles,
+  handleSaveArticle,
+  handleDeleteArticle,
+  savedArticles = [],
+}) {
   const [visibleCount, setVisibleCount] = useState(3);
 
   if (!articles || articles.length === 0) return null;
@@ -19,9 +24,8 @@ function SearchResults({ articles, handleSaveArticle, savedArticles = [] }) {
               key={index}
               article={article}
               handleSaveClick={handleSaveArticle}
-              saved={savedArticles.some(
-                (savedArticle) => savedArticle.url === article.url
-              )} // ✅ Now works safely
+              handleDeleteClick={handleDeleteArticle}
+              savedArticles={savedArticles}
             />
           ))}
         </div>

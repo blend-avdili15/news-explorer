@@ -53,6 +53,7 @@ function App() {
       })
       .then((user) => {
         setCurrentUser(user);
+        localStorage.setItem("user", JSON.stringify(user));
         setActiveModal("");
         navigate("/");
       })
@@ -87,34 +88,34 @@ function App() {
       return;
     }
 
-    const isAlreadySaved = savedArticles.some(
-      (saved) => saved.url === article.url
-    );
-    if (!isAlreadySaved) {
-      setSavedArticles((prev) => [...prev, article]);
-    }
+    setSavedArticles((prev) => {
+      const isAlreadySaved = prev.some((saved) => saved.url === article.url);
+      if (!isAlreadySaved) {
+        const updatedArticles = [...prev, article];
+        localStorage.setItem("savedArticles", JSON.stringify(updatedArticles)); // ✅ Save to localStorage
+        return updatedArticles;
+      }
+      return prev;
+    });
   };
 
-  // const handleUpdateUser = ({ name, avatar }) => {
-  //   const token = localStorage.getItem("jwt");
-
-  //   return updateUser({ name, username }, token)
-  //     .then((updatedUser) => {
-  //       setCurrentUser(updatedUser);
-  //       closeActiveModal();
-  //     })
-  //     .catch(console.error);
-  // };
-
-  // useEffects
-
-  // useEffect(() => {
-  //   getItems()
-  //     .then((data) => setMessage(data))
-  //     .catch((err) => console.error("Error fetching:", err));
-  // }, []);
+  const handleDeleteArticle = (articleToDelete) => {
+    setSavedArticles((prev) => {
+      const updatedArticles = prev.filter(
+        (article) => article.url !== articleToDelete.url
+      );
+      localStorage.setItem("savedArticles", JSON.stringify(updatedArticles)); // ✅ Update localStorage
+      return updatedArticles;
+    });
+  };
 
   useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      setCurrentUser(JSON.parse(savedUser));
+      setIsLoggedIn(true);
+    }
+
     const token = localStorage.getItem("jwt");
     if (token) {
       checkToken(token)
@@ -150,6 +151,7 @@ function App() {
                 <Main
                   handleSaveArticle={handleSaveArticle}
                   savedArticles={savedArticles}
+                  handleDeleteClick={handleDeleteArticle}
                 />
               }
             />
@@ -159,7 +161,8 @@ function App() {
                 isLoggedIn ? (
                   <SavedNews
                     savedArticles={savedArticles || []}
-                    handleDeleteClick={() => setActiveModal("delete")}
+                    //handleDeleteClick={() => setActiveModal("delete")}
+                    handleDeleteClick={handleDeleteArticle}
                   />
                 ) : (
                   <Navigate to="/" />
