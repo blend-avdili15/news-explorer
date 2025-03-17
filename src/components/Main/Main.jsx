@@ -1,31 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Main.css";
 import About from "../About/About";
 import SearchResults from "../SearchResults/SearchResults";
 import SearchForm from "../SearchForm/SearchForm";
+import Preloader from "../Preloader/Preloader";
+import NothingFound from "../NothingFound/NothingFound";
 import { fetchNews } from "../../utils/newsApi";
-import { useState } from "react";
 
 function Main({ handleSaveArticle, savedArticles }) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [noResults, setNoResults] = useState(false);
 
-  const handleSearch = async (query) => {
-    setLoading(true);
+  const handleSearch = async (searchQuery) => {
+    setLoading(true); // ✅ Show preloader
     setError("");
     setArticles([]);
+    setNoResults(false);
 
     try {
-      const newsArticles = await fetchNews(query);
+      const newsArticles = await fetchNews(searchQuery); // ✅ Correct query variable
       if (newsArticles.length === 0) {
-        setError("Nothing Found");
+        setNoResults(true);
       }
       setArticles(newsArticles);
     } catch (err) {
       setError(err.message);
     } finally {
-      setLoading(false);
+      setLoading(false); // ✅ Hide preloader
     }
   };
 
@@ -46,8 +49,9 @@ function Main({ handleSaveArticle, savedArticles }) {
         <SearchForm onSearch={handleSearch} />
       </section>
 
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {loading && <Preloader isLoading={loading} />}
+      {noResults && !loading && <NothingFound />}
+      {error && <p className="error-message">{error}</p>}
       <SearchResults
         articles={articles}
         handleSaveArticle={handleSaveArticle}

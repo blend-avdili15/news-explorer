@@ -69,14 +69,14 @@ function ItemCard({
         <p className="card__reference">
           {article.source?.name || "Unknown Source"}
         </p>
-        <a
+        {/* <a
           href={article.url}
           target="_blank"
           rel="noopener noreferrer"
           className="card__link"
         >
           Read More
-        </a>
+        </a> */}
       </div>
     </li>
   );
