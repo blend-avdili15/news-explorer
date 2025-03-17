@@ -92,3 +92,33 @@
 .main__search-button:hover {
   opacity: 0.6px;
 }
+
+/* Tablet */
+
+@media screen and (max-width: 768px) {
+  .main__title {
+    font-size: 36px;
+    width: 385px;
+    height: 80px;
+  }
+
+  .main__subtitle {
+    font-size: 18px;
+    width: 452px;
+    height: 48px;
+  }
+  .main__search-container {
+    width: 452px;
+  }
+
+  .main__search-input {
+    height: 50px;
+    font-size: 14px;
+  }
+
+  .main__search-button {
+    height: 52px;
+    width: 140px;
+    font-size: 14px;
+  }
+}

@@ -38,3 +38,41 @@
   height: 464px;
   border-radius: 1000px;
 }
+
+/* Tablet Version */
+
+@media screen and (max-width: 768px) {
+  .about {
+    flex-direction: column; /* Stack content */
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .about__content {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 40px 20px;
+  }
+
+  .about__heading {
+    width: 424px;
+  }
+
+  .about__title {
+    margin: 0;
+  }
+
+  .about__subtitle {
+  }
+
+  .about__image-container {
+    width: 232px;
+    height: 232px;
+  }
+
+  .about__image {
+    width: 232px;
+    height: 232px;
+  }
+}

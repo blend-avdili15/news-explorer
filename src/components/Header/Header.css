@@ -146,3 +146,29 @@
   opacity: 0.6;
   cursor: pointer;
 }
+
+/* Tablet Version */
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: row;
+    padding: 23px 40px 13px;
+    align-items: center;
+  }
+
+  .header__title {
+    font-size: 18px;
+    margin-left: 0;
+  }
+
+  .header__logged-in,
+  .header__container {
+    margin-right: 0;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .header__profile {
+    width: auto;
+  }
+}

@@ -52,3 +52,34 @@
   width: 24px;
   height: 24px;
 }
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+  .footer {
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    padding: 20px;
+  }
+
+  .footer__copyright {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .footer__nav {
+    flex-direction: row;
+    align-items: center;
+    padding-right: 35px;
+  }
+
+  .footer__nav-links {
+  }
+
+  .footer__nav-item {
+  }
+
+  .footer__nav-social {
+    margin-right: 0;
+  }
+}

@@ -156,3 +156,43 @@
   color: #b6bcbf;
   margin: 0;
 }
+
+/* Tablet Version */
+
+@media screen and (max-width: 768px) {
+  .cards__list {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .card {
+    width: 224px;
+    height: 420px;
+  }
+
+  .card__image {
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .card__date {
+    width: 148px;
+    height: 24px;
+  }
+
+  .card__title {
+    font-size: 22px;
+    width: 192px;
+    height: auto;
+    white-space: normal; /* Wrap text properly */
+    overflow: visible;
+  }
+
+  .card__description {
+    width: 192px;
+  }
+
+  .card__reference {
+    width: 192px;
+  }
+}

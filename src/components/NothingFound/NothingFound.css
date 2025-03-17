@@ -41,3 +41,19 @@
 .nothing-found__text_span {
   display: block;
 }
+
+/* Tablet Version */
+
+@media screen and (max-width: 768px) {
+  .nothing-found {
+    padding-top: 20px;
+  }
+
+  .nothing-found__title {
+    font-size: 22px;
+  }
+
+  .nothing-found__text {
+    font-size: 14px;
+  }
+}

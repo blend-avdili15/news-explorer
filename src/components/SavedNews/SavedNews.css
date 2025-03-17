@@ -55,3 +55,25 @@
   width: 100%;
   padding: 60px 106px 60px 102px;
 }
+
+/* Tablet Version */
+
+@media screen and (max-width: 768px) {
+  .saved__content {
+    margin-left: 20px;
+    text-align: center;
+  }
+
+  .saved__title {
+    font-size: 32px;
+    width: auto;
+  }
+
+  .saved__keywords {
+    width: auto;
+  }
+
+  .saved__cards-container {
+    padding: 40px 20px;
+  }
+}

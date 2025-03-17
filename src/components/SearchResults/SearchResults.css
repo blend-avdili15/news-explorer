@@ -33,3 +33,21 @@
 .search__results-button:hover {
   opacity: 0.6;
 }
+
+/* Tablet Version */
+
+@media screen and (max-width: 768px) {
+  .search__results-container {
+    padding: 40px 20px;
+  }
+
+  .search__results-title {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .search__results-button {
+    width: 100%;
+    margin: 32px auto;
+  }
+}
