@@ -58,17 +58,6 @@ function Header({ isLoggedIn, handleRegisterClick, handleSignOutClick }) {
               alt="header-arrow"
             />
           </div>
-          {/* <div className="header__profile">
-            <button
-              onClick={handleSignOutClick}
-              className={`header__profile-button ${
-                isSavedNews ? "header__profile-button_black" : ""
-              }`}
-            >
-              {currentUser?.username || "User"}
-            </button>
-            <img className="header__arrow" src={arrow} alt="header-arrow" />
-          </div> */}
         </div>
       ) : (
         <div className="header__container">
@@ -85,6 +74,3 @@ function Header({ isLoggedIn, handleRegisterClick, handleSignOutClick }) {
 }
 
 export default Header;
-
-// const isSavedNews
-// {`header__title ${isSavedNews ? "header__title_white" : ""}`}

@@ -1,21 +1,19 @@
 import React from "react";
 import "./DeleteCardModal.css";
 
-function DeleteCardModal({ isOpen }) {
+function DeleteCardModal({ isOpen, onClose, onConfirm }) {
+  if (!isOpen) return null;
+
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="delete__card-modal">
-        <p className="delete__card-heading">Remove from saved</p>
-        {/* <button onClick={onClose} className="delete__card-close">
-          Cancel
-        </button>{" "} */}
-
-        {/* <button
-          onClick={() => console.log("Deleting...")}
-          className="delete__card-confirm"
+        <button
+          type="button"
+          onClick={onConfirm}
+          className="delete__card-heading"
         >
-          Confirm
-        </button> */}
+          Remove from saved
+        </button>
       </div>
     </div>
   );

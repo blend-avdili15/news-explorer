@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Main.css";
 import About from "../About/About";
 import SearchResults from "../SearchResults/SearchResults";
@@ -14,23 +14,32 @@ function Main({ handleSaveArticle, savedArticles }) {
   const [noResults, setNoResults] = useState(false);
 
   const handleSearch = async (searchQuery) => {
-    setLoading(true); // ✅ Show preloader
+    setLoading(true);
     setError("");
     setArticles([]);
     setNoResults(false);
 
     try {
-      const newsArticles = await fetchNews(searchQuery); // ✅ Correct query variable
+      const newsArticles = await fetchNews(searchQuery);
       if (newsArticles.length === 0) {
         setNoResults(true);
+      } else {
+        localStorage.setItem("searchResults", JSON.stringify(newsArticles));
       }
       setArticles(newsArticles);
     } catch (err) {
       setError(err.message);
     } finally {
-      setLoading(false); // ✅ Hide preloader
+      setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const savedResults = localStorage.getItem("searchResults");
+    if (savedResults) {
+      setArticles(JSON.parse(savedResults));
+    }
+  }, []);
 
   return (
     <main className="main">

@@ -1,22 +1,57 @@
-.modal_opened {
-  opacity: 1;
-  visibility: visible;
-}
-
-.delete__card-modal {
-  position: relative;
-  width: 159px;
-  height: 40px;
-  background-color: white;
-  border-radius: 10px;
-  top: 47px;
-  right: 300px;
-}
-
-.delete__card-heading {
-  font-size: 12px;
-  font-weight: 500;
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal_opened {
+  visibility: visible;
+  opacity: 1;
+}
+
+.delete__card-modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
+
+.delete__card-heading {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.delete__card-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.delete__card-confirm,
+.delete__card-close {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete__card-confirm {
+  background-color: red;
+  color: white;
+}
+
+.delete__card-close {
+  background-color: gray;
+  color: white;
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
 import { signIn, signUp, checkToken } from "../../utils/auth";
-import { updateUser, getItems } from "../../utils/api";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -17,20 +16,25 @@ import SignOutModal from "../SignOutModal/SignOutModal";
 import DeleteCardModal from "../DeleteCardModal/DeleteCardModal";
 
 function App() {
+  // State Variables /////////////////
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
-  const [savedArticles, setSavedArticles] = useState([]); // Store saved articles
+  const [savedArticles, setSavedArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [message, setMessage] = useState("");
+  const [articleToDelete, setArticleToDelete] = useState(null);
+
+  // Modal Handlers /////////////////
 
   const handleRegisterClick = () => setActiveModal("register");
   const handleLoginClick = () => setActiveModal("login");
   const handleSignOutClick = () => setActiveModal("signout");
-  const handleDeleteClick = () => setActiveModal("delete");
   const switchToRegister = () => setActiveModal("register");
   const switchToLogin = () => setActiveModal("login");
   const closeActiveModal = () => setActiveModal("");
+
+  // User Authentication Functions ///////////////////
 
   const navigate = useNavigate();
 
@@ -54,7 +58,7 @@ function App() {
       .then((user) => {
         setCurrentUser(user);
         localStorage.setItem("user", JSON.stringify(user));
-        setActiveModal("");
+        closeActiveModal();
         navigate("/");
       })
       .catch((err) => {
@@ -69,18 +73,35 @@ function App() {
     setIsLoggedIn(false);
     setSavedArticles([]);
     navigate("/", { replace: true });
-    setActiveModal("");
+    closeActiveModal();
   };
 
-  const handleDeleteCard = () => {
-    const token = localStorage.getItem("jwt");
+  // Deleting Articles //////////////////
 
-    deleteItem(selectedCard._id, token)
-      .then(() => {
-        closeActiveModal();
-      })
-      .catch(console.error);
+  const handleDeleteClick = (article) => {
+    setArticleToDelete(article);
+    setActiveModal("delete");
   };
+
+  const handleConfirmDelete = () => {
+    if (articleToDelete) {
+      handleDeleteArticle(articleToDelete);
+      setArticleToDelete(null);
+      closeActiveModal();
+    }
+  };
+
+  const handleDeleteArticle = (articleToDelete) => {
+    setSavedArticles((prev) => {
+      const updatedArticles = prev.filter(
+        (article) => article.url !== articleToDelete.url
+      );
+      localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
+      return updatedArticles;
+    });
+  };
+
+  // Saving Articles ////////////////////
 
   const handleSaveArticle = (article) => {
     if (!isLoggedIn) {
@@ -92,22 +113,14 @@ function App() {
       const isAlreadySaved = prev.some((saved) => saved.url === article.url);
       if (!isAlreadySaved) {
         const updatedArticles = [...prev, article];
-        localStorage.setItem("savedArticles", JSON.stringify(updatedArticles)); // ✅ Save to localStorage
+        localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
         return updatedArticles;
       }
       return prev;
     });
   };
 
-  const handleDeleteArticle = (articleToDelete) => {
-    setSavedArticles((prev) => {
-      const updatedArticles = prev.filter(
-        (article) => article.url !== articleToDelete.url
-      );
-      localStorage.setItem("savedArticles", JSON.stringify(updatedArticles)); // ✅ Update localStorage
-      return updatedArticles;
-    });
-  };
+  /////// UseEffect ////////////////////////
 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
@@ -131,6 +144,35 @@ function App() {
     } else {
       setIsLoading(false);
     }
+
+    // Load saved articles from localStorage
+    const savedData = localStorage.getItem("savedArticles");
+    if (savedData) {
+      setSavedArticles(JSON.parse(savedData));
+    }
+
+    // Get the last visited page from localStorage
+    const lastVisitedPage = localStorage.getItem("lastPage");
+
+    // Restore the last visited page ONLY on reload (not on navigation clicks)
+    if (lastVisitedPage && lastVisitedPage !== window.location.pathname) {
+      navigate(lastVisitedPage, { replace: true });
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      localStorage.setItem("lastPage", window.location.pathname);
+    };
+
+    // Listen for changes in URL (React Router navigation)
+    window.addEventListener("popstate", handleRouteChange);
+    window.addEventListener("beforeunload", handleRouteChange);
+
+    return () => {
+      window.removeEventListener("popstate", handleRouteChange);
+      window.removeEventListener("beforeunload", handleRouteChange);
+    };
   }, []);
 
   return (
@@ -139,9 +181,9 @@ function App() {
         <div className="page__content">
           <Header
             isLoggedIn={isLoggedIn}
-            handleSignOutClick={() => setActiveModal("signout")}
-            handleRegisterClick={() => setActiveModal("register")}
-            handleLoginClick={() => setActiveModal("login")}
+            handleSignOutClick={handleSignOutClick}
+            handleRegisterClick={handleRegisterClick}
+            handleLoginClick={handleLoginClick}
           />
 
           <Routes>
@@ -161,8 +203,7 @@ function App() {
                 isLoggedIn ? (
                   <SavedNews
                     savedArticles={savedArticles || []}
-                    //handleDeleteClick={() => setActiveModal("delete")}
-                    handleDeleteClick={handleDeleteArticle}
+                    handleDeleteClick={handleDeleteClick}
                   />
                 ) : (
                   <Navigate to="/" />
@@ -177,27 +218,25 @@ function App() {
 
       <RegisterModal
         isOpen={activeModal === "register"}
-        onClose={() => setActiveModal("")}
-        // handleRegisterClick={handleRegisterClick}
+        onClose={closeActiveModal}
         onSignUp={handleSignUp}
-        onSwitchToLogin={() => setActiveModal("login")}
+        onSwitchToLogin={switchToLogin}
       />
       <LoginModal
         isOpen={activeModal === "login"}
-        onClose={() => setActiveModal("")}
-        // handleLoginClick={handleLoginClick}
+        onClose={closeActiveModal}
         onSignIn={handleSignIn}
-        onSwitchToRegister={() => setActiveModal("register")}
+        onSwitchToRegister={switchToRegister}
       />
       <SignOutModal
         isOpen={activeModal === "signout"}
-        onClose={() => setActiveModal("")}
+        onClose={closeActiveModal}
         onSignOut={handleSignOut}
       />
       <DeleteCardModal
         isOpen={activeModal === "delete"}
-        onClose={() => setActiveModal("")}
-        // onDelete={handleDeleteCard}
+        onClose={closeActiveModal}
+        onConfirm={handleConfirmDelete}
       />
     </CurrentUserContext.Provider>
   );

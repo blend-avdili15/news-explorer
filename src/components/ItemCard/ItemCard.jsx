@@ -1,11 +1,11 @@
 import "./ItemCard.css";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
 import { useLocation } from "react-router-dom";
 
 function ItemCard({
-  handleDeleteClick, // = () => {},
-  handleSaveClick, // = () => {},
+  handleDeleteClick,
+  handleSaveClick,
   saved,
   article,
   savedArticles,
@@ -24,9 +24,9 @@ function ItemCard({
 
   const handleBookmarkClick = () => {
     if (isBookmarked) {
-      handleDeleteClick(article); // ✅ Remove from saved
+      handleDeleteClick(article);
     } else {
-      handleSaveClick(article); // ✅ Save article
+      handleSaveClick(article);
     }
   };
 
@@ -69,14 +69,6 @@ function ItemCard({
         <p className="card__reference">
           {article.source?.name || "Unknown Source"}
         </p>
-        {/* <a
-          href={article.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="card__link"
-        >
-          Read More
-        </a> */}
       </div>
     </li>
   );
