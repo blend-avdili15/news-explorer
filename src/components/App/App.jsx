@@ -13,7 +13,6 @@ import "./App.css";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import SignOutModal from "../SignOutModal/SignOutModal";
-import DeleteCardModal from "../DeleteCardModal/DeleteCardModal";
 
 function App() {
   // State Variables /////////////////
@@ -23,7 +22,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [savedArticles, setSavedArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [articleToDelete, setArticleToDelete] = useState(null);
 
   // Modal Handlers /////////////////
 
@@ -77,19 +75,6 @@ function App() {
   };
 
   // Deleting Articles //////////////////
-
-  const handleDeleteClick = (article) => {
-    setArticleToDelete(article);
-    setActiveModal("delete");
-  };
-
-  const handleConfirmDelete = () => {
-    if (articleToDelete) {
-      handleDeleteArticle(articleToDelete);
-      setArticleToDelete(null);
-      closeActiveModal();
-    }
-  };
 
   const handleDeleteArticle = (articleToDelete) => {
     setSavedArticles((prev) => {
@@ -193,7 +178,7 @@ function App() {
                 <Main
                   handleSaveArticle={handleSaveArticle}
                   savedArticles={savedArticles}
-                  handleDeleteClick={handleDeleteArticle}
+                  handleDeleteArticle={handleDeleteArticle}
                 />
               }
             />
@@ -203,7 +188,7 @@ function App() {
                 isLoggedIn ? (
                   <SavedNews
                     savedArticles={savedArticles || []}
-                    handleDeleteClick={handleDeleteClick}
+                    handleDeleteArticle={handleDeleteArticle}
                   />
                 ) : (
                   <Navigate to="/" />
@@ -232,11 +217,6 @@ function App() {
         isOpen={activeModal === "signout"}
         onClose={closeActiveModal}
         onSignOut={handleSignOut}
-      />
-      <DeleteCardModal
-        isOpen={activeModal === "delete"}
-        onClose={closeActiveModal}
-        onConfirm={handleConfirmDelete}
       />
     </CurrentUserContext.Provider>
   );

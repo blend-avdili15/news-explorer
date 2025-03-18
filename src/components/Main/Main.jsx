@@ -7,7 +7,7 @@ import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import { fetchNews } from "../../utils/newsApi";
 
-function Main({ handleSaveArticle, savedArticles }) {
+function Main({ handleSaveArticle, savedArticles, handleDeleteArticle }) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -65,6 +65,7 @@ function Main({ handleSaveArticle, savedArticles }) {
         articles={articles}
         handleSaveArticle={handleSaveArticle}
         savedArticles={savedArticles}
+        handleDeleteArticle={handleDeleteArticle}
       />
 
       <About />

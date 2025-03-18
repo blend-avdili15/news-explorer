@@ -3,7 +3,7 @@ import "./SavedNews.css";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
 
-function SavedNews({ savedArticles, handleDeleteClick }) {
+function SavedNews({ savedArticles, handleDeleteArticle }) {
   const currentUser = useContext(CurrentUserContext);
 
   const keywords = [
@@ -38,7 +38,7 @@ function SavedNews({ savedArticles, handleDeleteClick }) {
                 <ItemCard
                   key={index}
                   article={article}
-                  handleDeleteClick={handleDeleteClick}
+                  handleDeleteArticle={handleDeleteArticle}
                   savedArticles={savedArticles}
                 />
               ))}

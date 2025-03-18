@@ -24,7 +24,7 @@ function SearchResults({
               key={index}
               article={article}
               handleSaveClick={handleSaveArticle}
-              handleDeleteClick={handleDeleteArticle}
+              handleDeleteArticle={handleDeleteArticle}
               savedArticles={savedArticles}
             />
           ))}

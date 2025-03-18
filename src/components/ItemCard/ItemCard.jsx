@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
 import { useLocation } from "react-router-dom";
 
 function ItemCard({
-  handleDeleteClick,
+  handleDeleteArticle,
   handleSaveClick,
   saved,
   article,
@@ -24,7 +24,7 @@ function ItemCard({
 
   const handleBookmarkClick = () => {
     if (isBookmarked) {
-      handleDeleteClick(article);
+      handleDeleteArticle(article);
     } else {
       handleSaveClick(article);
     }
@@ -47,11 +47,14 @@ function ItemCard({
       )}
 
       {isSavedNewsPage ? (
-        <button
-          onClick={() => handleDeleteClick(article)}
-          className="card__delete-button"
-          aria-label="Delete article"
-        />
+        <div className="card__delete-info">
+          <p className="card__delete-hover">Remove from saved</p>
+          <button
+            onClick={() => handleDeleteArticle(article)}
+            className="card__delete-button"
+            aria-label="Delete article"
+          />
+        </div>
       ) : (
         <button
           onClick={handleBookmarkClick}
