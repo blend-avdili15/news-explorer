@@ -111,7 +111,7 @@
 }
 
 .card__content {
-  margin: 20px 24px 24px 24px;
+  /* margin: 20px 24px 24px 24px; */
   height: 260px;
 }
 
@@ -121,8 +121,6 @@
   font-size: 18px;
   font-weight: 400;
   color: #b6bcbf;
-  margin: 0;
-  padding-bottom: 12px;
 }
 
 .card__title {
@@ -132,7 +130,7 @@
   font-weight: 400;
   color: #1a1b22;
   border-radius: 10px;
-  margin: 0;
+  margin-bottom: 15px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -147,7 +145,7 @@
   font-size: 16px;
   font-weight: 400;
   color: #1a1b22;
-  margin: 0;
+  margin: 0 0 20px;
   line-height: 1.5em;
   max-height: 100px;
 }

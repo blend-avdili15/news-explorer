@@ -26,7 +26,10 @@
   color: #1a1b22;
   background-color: #e8e8e8;
   border-radius: 80px;
-  margin: 64px 576px 0;
+  /* margin: 64px 576px 0; */
+  margin-top: 64px;
+  /* margin-right: 175px; */
+  margin-left: 476px;
   cursor: pointer;
 }
 
