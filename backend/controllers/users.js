@@ -58,6 +58,7 @@ const createUser = (req, res, next) => {
 
 const getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
+    .populate("savedArticles")
     .then((user) => {
       if (!user) {
         return next(new NotFoundError("User not found"));

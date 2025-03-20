@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
 import { signIn, signUp, checkToken } from "../../utils/auth";
+import { baseUrl } from "../../utils/constants";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -56,6 +57,9 @@ function App() {
       .then((user) => {
         setCurrentUser(user);
         localStorage.setItem("user", JSON.stringify(user));
+        return fetchSavedArticles(user.token);
+      })
+      .then(() => {
         closeActiveModal();
         navigate("/");
       })
@@ -67,6 +71,8 @@ function App() {
 
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
+    localStorage.removeItem("user");
+    localStorage.removeItem("savedArticles");
     setCurrentUser(null);
     setIsLoggedIn(false);
     setSavedArticles([]);
@@ -74,16 +80,48 @@ function App() {
     closeActiveModal();
   };
 
+  const fetchSavedArticles = (token) => {
+    return fetch(`${baseUrl}/api/articles`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((articles) => {
+        setSavedArticles(articles);
+        localStorage.setItem("savedArticles", JSON.stringify(articles));
+      })
+      .catch((err) => console.error("Failed to fetch saved articles:", err));
+  };
+
   // Deleting Articles //////////////////
 
   const handleDeleteArticle = (articleToDelete) => {
-    setSavedArticles((prev) => {
-      const updatedArticles = prev.filter(
-        (article) => article.url !== articleToDelete.url
-      );
-      localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
-      return updatedArticles;
-    });
+    const token = localStorage.getItem("jwt");
+    if (!token) return;
+
+    fetch(`${baseUrl}/api/articles/${articleToDelete._id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to delete article");
+        }
+        return res.json();
+      })
+      .then(() => {
+        const updatedArticles = savedArticles.filter(
+          (article) => article._id !== articleToDelete._id
+        );
+        setSavedArticles(updatedArticles);
+        localStorage.setItem("savedArticles", JSON.stringify(updatedArticles)); // ✅ Remove from localStorage
+      })
+      .catch((err) => console.error("Error deleting article:", err));
   };
 
   // Saving Articles ////////////////////
@@ -94,32 +132,49 @@ function App() {
       return;
     }
 
-    setSavedArticles((prev) => {
-      const isAlreadySaved = prev.some((saved) => saved.url === article.url);
-      if (!isAlreadySaved) {
-        const updatedArticles = [...prev, article];
-        localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
-        return updatedArticles;
-      }
-      return prev;
-    });
+    const token = localStorage.getItem("jwt");
+    if (!token) return;
+
+    fetch(`${baseUrl}/api/articles`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(article),
+    })
+      .then((res) => res.json())
+      .then((savedArticle) => {
+        setSavedArticles((prev) => [...prev, savedArticle]);
+        localStorage.setItem(
+          "savedArticles",
+          JSON.stringify([...savedArticles, savedArticle])
+        );
+      })
+      .catch((err) => console.error("Error saving article:", err));
   };
+
+  // setSavedArticles((prev) => {
+  //   const isAlreadySaved = prev.some((saved) => saved.url === article.url);
+  //   if (!isAlreadySaved) {
+  //     const updatedArticles = [...prev, article];
+  //     localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
+  //     return updatedArticles;
+  //   }
+  //   return prev;
+  // });
 
   /////// UseEffect ////////////////////////
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setCurrentUser(JSON.parse(savedUser));
-      setIsLoggedIn(true);
-    }
-
     const token = localStorage.getItem("jwt");
+
     if (token) {
       checkToken(token)
         .then((user) => {
           setCurrentUser(user);
           setIsLoggedIn(true);
+          return fetchSavedArticles(token); // ✅ Fetch saved articles after login
         })
         .catch(() => {
           console.error("Invalid token, logging out...");
@@ -136,14 +191,50 @@ function App() {
       setSavedArticles(JSON.parse(savedData));
     }
 
-    // Get the last visited page from localStorage
+    // Get last visited page
     const lastVisitedPage = localStorage.getItem("lastPage");
-
-    // Restore the last visited page ONLY on reload (not on navigation clicks)
     if (lastVisitedPage && lastVisitedPage !== window.location.pathname) {
       navigate(lastVisitedPage, { replace: true });
     }
   }, []);
+
+  // useEffect(() => {
+  //   const savedUser = localStorage.getItem("user");
+  //   if (savedUser) {
+  //     setCurrentUser(JSON.parse(savedUser));
+  //     setIsLoggedIn(true);
+  //   }
+
+  //   const token = localStorage.getItem("jwt");
+  //   if (token) {
+  //     checkToken(token)
+  //       .then((user) => {
+  //         setCurrentUser(user);
+  //         setIsLoggedIn(true);
+  //       })
+  //       .catch(() => {
+  //         console.error("Invalid token, logging out...");
+  //         handleSignOut();
+  //       })
+  //       .finally(() => setIsLoading(false));
+  //   } else {
+  //     setIsLoading(false);
+  //   }
+
+  //   // Load saved articles from localStorage
+  //   const savedData = localStorage.getItem("savedArticles");
+  //   if (savedData) {
+  //     setSavedArticles(JSON.parse(savedData));
+  //   }
+
+  //   // Get the last visited page from localStorage
+  //   const lastVisitedPage = localStorage.getItem("lastPage");
+
+  //   // Restore the last visited page ONLY on reload (not on navigation clicks)
+  //   if (lastVisitedPage && lastVisitedPage !== window.location.pathname) {
+  //     navigate(lastVisitedPage, { replace: true });
+  //   }
+  // }, []);
 
   useEffect(() => {
     const handleRouteChange = () => {

@@ -23,6 +23,12 @@ const userSchema = new mongoose.Schema({
     required: [true, "Password is required"],
     select: false,
   },
+  savedArticles: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Article",
+    },
+  ],
 });
 
 userSchema.statics.findUserByCredentials = function findUserByCredentials(

@@ -39,7 +39,7 @@ function SavedNews({ savedArticles, handleDeleteArticle }) {
                   key={index}
                   article={article}
                   handleDeleteArticle={handleDeleteArticle}
-                  savedArticles={savedArticles}
+                  savedArticles={savedArticles || []}
                 />
               ))}
             </div>

@@ -8,15 +8,19 @@ function ItemCard({
   handleSaveClick,
   saved,
   article,
-  savedArticles,
+  savedArticles = [],
 }) {
   const currentUser = useContext(CurrentUserContext);
   const location = useLocation();
   const isSavedNewsPage = location.pathname === "/savednews";
 
-  const isBookmarked = savedArticles.some(
-    (savedArticle) => savedArticle.url === article.url
-  );
+  // const isBookmarked = savedArticles.some(
+  //   (savedArticle) => savedArticle.url === article.url
+  // );
+
+  const isBookmarked =
+    Array.isArray(savedArticles) &&
+    savedArticles.some((savedArticle) => savedArticle.url === article.url);
 
   const bookmarkButtonClass = `card__bookmark ${
     isBookmarked ? "card__bookmark_active" : ""
