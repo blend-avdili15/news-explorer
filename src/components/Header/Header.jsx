@@ -1,6 +1,6 @@
 import "./Header.css";
 import React, { useContext } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import arrowWhite from "../../images/arrow-white.svg";
 import arrowBlack from "../../images/arrow-black.svg";
 import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
@@ -21,24 +21,40 @@ function Header({ isLoggedIn, handleRegisterClick, handleSignOutClick }) {
 
       {isLoggedIn ? (
         <div className="header__logged-in">
-          <Link to="/" className="header__nav-item">
-            <p
-              className={`header__home ${
-                isSavedNews ? "header__home_black" : ""
-              }`}
-            >
-              Home
-            </p>
-          </Link>
-          <Link to="/savednews" className="header__nav-item">
-            <p
-              className={`header__articles ${
-                isSavedNews ? "header__articles_black" : ""
-              }`}
-            >
-              Saved articles
-            </p>
-          </Link>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `header__nav-item ${
+                isSavedNews ? "header__nav-item_black" : ""
+              } ${
+                isActive
+                  ? isSavedNews
+                    ? "header__nav-item_active_black"
+                    : "header__nav-item_active"
+                  : ""
+              }`
+            }
+          >
+            Home
+          </NavLink>
+
+          <NavLink
+            to="/savednews"
+            className={({ isActive }) =>
+              `header__nav-item ${
+                isSavedNews ? "header__nav-item_black" : ""
+              } ${
+                isActive
+                  ? isSavedNews
+                    ? "header__nav-item_active_black"
+                    : "header__nav-item_active"
+                  : ""
+              }`
+            }
+          >
+            Saved articles
+          </NavLink>
+
           <div
             className={`header__profile ${
               isSavedNews ? "header__profile_black" : ""
@@ -61,9 +77,15 @@ function Header({ isLoggedIn, handleRegisterClick, handleSignOutClick }) {
         </div>
       ) : (
         <div className="header__container">
-          <Link to="/" className="header__nav-item">
-            <p className="header__home">Home</p>
-          </Link>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `header__nav-item ${isActive ? "header__nav-item_active" : ""}`
+            }
+          >
+            Home
+          </NavLink>
+
           <button onClick={handleRegisterClick} className="header__register">
             Sign in
           </button>

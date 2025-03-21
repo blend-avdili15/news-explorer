@@ -12,7 +12,7 @@ const articleSchema = new mongoose.Schema({
   publishedAt: { type: String },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user", // ✅ Reference to the user who saved the article
+    ref: "user",
     required: true,
   },
 });

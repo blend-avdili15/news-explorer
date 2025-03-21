@@ -14,10 +14,6 @@ function ItemCard({
   const location = useLocation();
   const isSavedNewsPage = location.pathname === "/savednews";
 
-  // const isBookmarked = savedArticles.some(
-  //   (savedArticle) => savedArticle.url === article.url
-  // );
-
   const isBookmarked =
     Array.isArray(savedArticles) &&
     savedArticles.some((savedArticle) => savedArticle.url === article.url);

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const auth = require("../middlewares/auth"); // ✅ Middleware for authentication
+const auth = require("../middlewares/auth");
 const {
   saveArticle,
   deleteArticle,
@@ -8,10 +8,8 @@ const {
 
 router.get("/", auth, getSavedArticles);
 
-// Save an article (POST /articles)
 router.post("/", auth, saveArticle);
 
-// Delete a saved article (DELETE /articles/:articleId)
 router.delete("/:articleId", auth, deleteArticle);
 
 module.exports = router;

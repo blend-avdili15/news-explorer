@@ -73,7 +73,6 @@ function App() {
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
     localStorage.removeItem("user");
-    // localStorage.removeItem("savedArticles");
     setCurrentUser(null);
     setIsLoggedIn(false);
     setSavedArticles([]);
@@ -92,7 +91,6 @@ function App() {
       .then((res) => res.json())
       .then((articles) => {
         setSavedArticles(articles);
-        // localStorage.setItem("savedArticles", JSON.stringify(articles));
       })
 
       .catch((err) => console.error("Failed to fetch saved articles:", err));
@@ -130,7 +128,6 @@ function App() {
           (article) => article._id !== savedArticle._id
         );
         setSavedArticles(updatedArticles);
-        // localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
       })
       .catch((err) => console.error("Error deleting article:", err));
   };
@@ -157,23 +154,9 @@ function App() {
       .then((res) => res.json())
       .then((savedArticle) => {
         setSavedArticles((prev) => [...prev, savedArticle]);
-        // localStorage.setItem(
-        //   "savedArticles",
-        //   JSON.stringify([...savedArticles, savedArticle])
-        // );
       })
       .catch((err) => console.error("Error saving article:", err));
   };
-
-  // setSavedArticles((prev) => {
-  //   const isAlreadySaved = prev.some((saved) => saved.url === article.url);
-  //   if (!isAlreadySaved) {
-  //     const updatedArticles = [...prev, article];
-  //     localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
-  //     return updatedArticles;
-  //   }
-  //   return prev;
-  // });
 
   /////// UseEffect ////////////////////////
 
@@ -185,7 +168,7 @@ function App() {
         .then((user) => {
           setCurrentUser(user);
           setIsLoggedIn(true);
-          return fetchSavedArticles(token); // ✅ Fetch saved articles after login
+          return fetchSavedArticles(token);
         })
         .catch(() => {
           console.error("Invalid token, logging out...");
@@ -196,63 +179,17 @@ function App() {
       setIsLoading(false);
     }
 
-    // Load saved articles from localStorage
-    // const savedData = localStorage.getItem("savedArticles");
-    // if (savedData) {
-    //   setSavedArticles(JSON.parse(savedData));
-    // }
-
-    // Get last visited page
     const lastVisitedPage = localStorage.getItem("lastPage");
     if (lastVisitedPage && lastVisitedPage !== window.location.pathname) {
       navigate(lastVisitedPage, { replace: true });
     }
   }, []);
 
-  // useEffect(() => {
-  //   const savedUser = localStorage.getItem("user");
-  //   if (savedUser) {
-  //     setCurrentUser(JSON.parse(savedUser));
-  //     setIsLoggedIn(true);
-  //   }
-
-  //   const token = localStorage.getItem("jwt");
-  //   if (token) {
-  //     checkToken(token)
-  //       .then((user) => {
-  //         setCurrentUser(user);
-  //         setIsLoggedIn(true);
-  //       })
-  //       .catch(() => {
-  //         console.error("Invalid token, logging out...");
-  //         handleSignOut();
-  //       })
-  //       .finally(() => setIsLoading(false));
-  //   } else {
-  //     setIsLoading(false);
-  //   }
-
-  //   // Load saved articles from localStorage
-  //   const savedData = localStorage.getItem("savedArticles");
-  //   if (savedData) {
-  //     setSavedArticles(JSON.parse(savedData));
-  //   }
-
-  //   // Get the last visited page from localStorage
-  //   const lastVisitedPage = localStorage.getItem("lastPage");
-
-  //   // Restore the last visited page ONLY on reload (not on navigation clicks)
-  //   if (lastVisitedPage && lastVisitedPage !== window.location.pathname) {
-  //     navigate(lastVisitedPage, { replace: true });
-  //   }
-  // }, []);
-
   useEffect(() => {
     const handleRouteChange = () => {
       localStorage.setItem("lastPage", window.location.pathname);
     };
 
-    // Listen for changes in URL (React Router navigation)
     window.addEventListener("popstate", handleRouteChange);
     window.addEventListener("beforeunload", handleRouteChange);
 
