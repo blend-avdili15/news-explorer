@@ -57,7 +57,8 @@ function App() {
       .then((user) => {
         setCurrentUser(user);
         localStorage.setItem("user", JSON.stringify(user));
-        return fetchSavedArticles(user.token);
+        const token = localStorage.getItem("jwt");
+        return fetchSavedArticles(token);
       })
       .then(() => {
         closeActiveModal();
@@ -72,7 +73,7 @@ function App() {
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
     localStorage.removeItem("user");
-    localStorage.removeItem("savedArticles");
+    // localStorage.removeItem("savedArticles");
     setCurrentUser(null);
     setIsLoggedIn(false);
     setSavedArticles([]);
@@ -91,8 +92,9 @@ function App() {
       .then((res) => res.json())
       .then((articles) => {
         setSavedArticles(articles);
-        localStorage.setItem("savedArticles", JSON.stringify(articles));
+        // localStorage.setItem("savedArticles", JSON.stringify(articles));
       })
+
       .catch((err) => console.error("Failed to fetch saved articles:", err));
   };
 
@@ -102,7 +104,16 @@ function App() {
     const token = localStorage.getItem("jwt");
     if (!token) return;
 
-    fetch(`${baseUrl}/api/articles/${articleToDelete._id}`, {
+    const savedArticle = savedArticles.find(
+      (a) => a.url === articleToDelete.url
+    );
+
+    if (!savedArticle || !savedArticle._id) {
+      console.error("No matching saved article with _id found.");
+      return;
+    }
+
+    fetch(`${baseUrl}/api/articles/${savedArticle._id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -116,10 +127,10 @@ function App() {
       })
       .then(() => {
         const updatedArticles = savedArticles.filter(
-          (article) => article._id !== articleToDelete._id
+          (article) => article._id !== savedArticle._id
         );
         setSavedArticles(updatedArticles);
-        localStorage.setItem("savedArticles", JSON.stringify(updatedArticles)); // ✅ Remove from localStorage
+        // localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
       })
       .catch((err) => console.error("Error deleting article:", err));
   };
@@ -146,10 +157,10 @@ function App() {
       .then((res) => res.json())
       .then((savedArticle) => {
         setSavedArticles((prev) => [...prev, savedArticle]);
-        localStorage.setItem(
-          "savedArticles",
-          JSON.stringify([...savedArticles, savedArticle])
-        );
+        // localStorage.setItem(
+        //   "savedArticles",
+        //   JSON.stringify([...savedArticles, savedArticle])
+        // );
       })
       .catch((err) => console.error("Error saving article:", err));
   };
@@ -186,10 +197,10 @@ function App() {
     }
 
     // Load saved articles from localStorage
-    const savedData = localStorage.getItem("savedArticles");
-    if (savedData) {
-      setSavedArticles(JSON.parse(savedData));
-    }
+    // const savedData = localStorage.getItem("savedArticles");
+    // if (savedData) {
+    //   setSavedArticles(JSON.parse(savedData));
+    // }
 
     // Get last visited page
     const lastVisitedPage = localStorage.getItem("lastPage");

@@ -40,21 +40,36 @@ const saveArticle = (req, res, next) => {
 };
 
 const deleteArticle = (req, res, next) => {
-  User.findByIdAndUpdate(
-    req.user._id,
-    { $pull: { savedArticles: req.params.articleId } }, // ✅ Remove only from user's list
-    { new: true }
-  )
-    .then((user) => {
-      if (!user) {
-        return next(new NotFoundError("User not found"));
+  const articleId = req.params.articleId;
+
+  Article.findOne({ _id: articleId })
+    .then((article) => {
+      if (!article) {
+        throw new NotFoundError("Article not found");
       }
-      res.send({ message: "Article removed from saved list" });
+
+      if (!article.owner.equals(req.user._id)) {
+        return res
+          .status(403)
+          .send({ message: "You are not authorized to delete this article" });
+      }
+
+      // ✅ Delete article document from database
+      return Article.findByIdAndDelete(articleId).then(() =>
+        res.send({ message: "Article deleted successfully" })
+      );
     })
+    .catch(next);
+};
+
+const getSavedArticles = (req, res, next) => {
+  Article.find({ owner: req.user._id })
+    .then((articles) => res.send(articles))
     .catch(next);
 };
 
 module.exports = {
   saveArticle,
   deleteArticle,
+  getSavedArticles,
 };
