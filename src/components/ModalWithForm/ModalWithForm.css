@@ -125,6 +125,16 @@
 
 .modal__error {
   color: red;
+  position: absolute;
+  font-size: 12px;
+  margin-top: -20px;
+  line-height: 13px;
+}
+
+.modal__error_visible {
+  color: red;
+  font-size: 12px;
+  text-align: center;
 }
 
 /* Tablet Version */

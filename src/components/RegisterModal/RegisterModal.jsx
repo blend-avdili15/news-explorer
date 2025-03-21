@@ -107,9 +107,7 @@ function RegisterModal({ onClose, isOpen, onSignUp, onSwitchToLogin }) {
         <span className="modal__error" id="register-username-error" />
       </label>
 
-      {formError && (
-        <div className="modal__error modal__error_visible">{formError}</div>
-      )}
+      {formError && <div className="modal__error_visible">{formError}</div>}
 
       <div className="modal__button-container">
         <button
