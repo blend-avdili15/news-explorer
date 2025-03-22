@@ -23,12 +23,14 @@
 .about__title {
   height: 46px;
   font-size: 40px;
+  font-family: "Roboto-Slab", sans-serif;
   font-weight: 400;
 }
 
 .about__subtitle {
   height: 120px;
   font-size: 18px;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   flex-wrap: wrap;
 }

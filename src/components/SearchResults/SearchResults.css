@@ -13,6 +13,7 @@
   width: 712px;
   height: 46px;
   font-size: 40px;
+  font-family: "Roboto-Slab", sans-serif;
   font-weight: 400;
   color: #1a1b22;
   margin: 0 0 64px 0;
@@ -22,6 +23,7 @@
   width: 299px;
   height: 64px;
   font-size: 18px;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   color: #1a1b22;
   background-color: #e8e8e8;

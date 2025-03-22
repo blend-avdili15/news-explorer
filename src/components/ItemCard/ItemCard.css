@@ -126,6 +126,7 @@
 .card__title {
   width: 352px;
   height: 60px;
+  font-family: "Roboto-Slab", sans-serif;
   font-size: 26px;
   font-weight: 400;
   color: #1a1b22;
@@ -143,6 +144,7 @@
   text-overflow: ellipsis;
   width: 352px;
   font-size: 16px;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   color: #1a1b22;
   margin: 0 0 20px;
@@ -154,6 +156,7 @@
   width: 121px;
   height: 20px;
   font-size: 16px;
+  font-family: "Roboto-Slab", sans-serif;
   font-weight: 700;
   color: #b6bcbf;
   margin: 0;

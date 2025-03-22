@@ -13,6 +13,7 @@
   padding-bottom: 28px;
   margin: 0;
   font-size: 18px;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   width: 712px;
   height: 24px;
@@ -25,6 +26,7 @@
   width: 530px;
   height: 92px;
   font-size: 40px;
+  font-family: "Roboto-Slab", sans-serif;
   font-weight: 400;
   color: #1a1b22;
 }
@@ -39,12 +41,15 @@
   width: 712px;
   height: 24px;
   font-size: 18px;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
 }
 
 .saved__keywords-span {
   color: #1a1b22;
   font-weight: 700;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
 }
 
 .saved__cards {
