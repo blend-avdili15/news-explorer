@@ -128,3 +128,64 @@
     font-size: 14px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .main__content {
+    /* width: 320px;
+    height: 480px; 536px */
+  }
+
+  .main__heading {
+    height: 168px;
+    gap: 16px;
+  }
+
+  .main__title {
+    width: 285px;
+    height: 80px;
+    font-size: 34px;
+    margin: 0;
+    margin-top: 30px;
+  }
+
+  .main__subtitle {
+    width: 288px;
+    height: 72px;
+    font-size: 18px;
+    /* margin-bottom: 122px; */
+  }
+
+  .main__search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  .main__search-container {
+    width: 288px;
+    height: 128px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 36px;
+    margin-top: 122px;
+  }
+
+  .main__search-input {
+    width: 288px;
+    height: 56px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main__search-button {
+    width: 288px;
+    height: 56px;
+    padding: 0;
+    margin-top: 70px;
+    right: 0;
+    /* top: 80px; */
+  }
+}

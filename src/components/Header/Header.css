@@ -141,6 +141,47 @@
   cursor: pointer;
 }
 
+.header__menu-button {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px;
+  gap: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.mobile-menu__link,
+.mobile-menu__button {
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  text-align: left;
+  background: none;
+  border: none;
+  color: black;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.mobile-menu__button:hover,
+.mobile-menu__link:hover {
+  opacity: 0.7;
+}
+
 /* Tablet Version */
 
 @media screen and (max-width: 768px) {
@@ -164,5 +205,84 @@
 
   .header__profile {
     width: auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    width: 100%;
+  }
+
+  .header__menu-button {
+    display: block;
+    margin-right: 24px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .header__title {
+    margin-left: -20px;
+  }
+
+  .header__menu-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: -90px;
+  }
+
+  .header__logged-in,
+  .header__container {
+    display: none;
+  }
+
+  .mobile-menu {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 16px 24px;
+  }
+
+  .menu__home-link {
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+
+  .menu__saved-link {
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    margin-left: 30px;
+  }
+
+  .menu-register__button {
+    border-radius: 30px;
+    width: 272px;
+    height: 56px;
+  }
+
+  .menu-out__button {
+    border-radius: 30px;
+    width: 272px;
+    height: 56px;
+  }
+
+  .menu__home-link:hover,
+  .menu__saved-link:hover,
+  .menu-register__button:hover,
+  .menu-out__button:hover {
+    opacity: 0.7;
   }
 }

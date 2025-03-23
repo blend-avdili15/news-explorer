@@ -78,3 +78,41 @@
     height: 232px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .about {
+    padding: 0;
+  }
+
+  .about__content {
+    width: 320px;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .about__image-container {
+    width: 272px;
+    height: 272px;
+    padding: 32px 24px 24px;
+  }
+
+  .about__image {
+    width: 272px;
+    height: 272px;
+  }
+
+  .about__heading {
+    width: 288px;
+    padding: 0 16px;
+  }
+
+  .about__title {
+    height: 40px;
+    font-size: 30px;
+  }
+
+  .about__subtitle {
+    height: 200px;
+    font-size: 18px;
+  }
+}

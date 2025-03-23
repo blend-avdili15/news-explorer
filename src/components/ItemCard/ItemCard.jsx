@@ -65,7 +65,11 @@ function ItemCard({
 
       <div className="card__content">
         <p className="card__date">
-          {new Date(article.publishedAt).toLocaleDateString()}
+          {new Date(article.publishedAt).toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}
         </p>
         <h2 className="card__title">{article.title}</h2>
         <p className="card__description">{article.description}</p>
