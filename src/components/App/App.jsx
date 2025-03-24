@@ -208,6 +208,7 @@ function App() {
             handleSignOutClick={handleSignOutClick}
             handleRegisterClick={handleRegisterClick}
             handleLoginClick={handleLoginClick}
+            isModalOpen={!!activeModal}
           />
 
           <Routes>

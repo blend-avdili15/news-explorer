@@ -8,7 +8,12 @@ import menuBlack from "../../images/menu-black.svg";
 import closeIcon from "../../images/close.svg";
 import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
 
-function Header({ isLoggedIn, handleRegisterClick, handleSignOutClick }) {
+function Header({
+  isLoggedIn,
+  handleRegisterClick,
+  handleSignOutClick,
+  isModalOpen,
+}) {
   const currentUser = useContext(CurrentUserContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,21 +25,33 @@ function Header({ isLoggedIn, handleRegisterClick, handleSignOutClick }) {
   };
 
   return (
-    <header className="header">
+    <header
+      className={`header ${isMobileMenuOpen ? "header_open-mobile" : ""}`}
+    >
       <h2
-        className={`header__title ${isSavedNews ? "header__title_black" : ""}`}
+        className={`header__title ${
+          isMobileMenuOpen
+            ? "header__title_white"
+            : isSavedNews
+            ? "header__title_black"
+            : ""
+        }`}
       >
         NewsExplorer
       </h2>
-      <button className="header__menu-button" onClick={toggleMobileMenu}>
-        <img
-          src={
-            isMobileMenuOpen ? closeIcon : isSavedNews ? menuBlack : menuWhite
-          }
-          alt="menu"
-          className="header__menu-icon"
-        />
-      </button>
+
+      {!isModalOpen && (
+        <button className="header__menu-button" onClick={toggleMobileMenu}>
+          <img
+            src={
+              isMobileMenuOpen ? closeIcon : isSavedNews ? menuBlack : menuWhite
+            }
+            alt="menu"
+            className="header__menu-icon"
+          />
+        </button>
+      )}
+
       {isLoggedIn ? (
         <div className="header__logged-in">
           <NavLink

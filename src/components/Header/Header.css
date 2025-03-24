@@ -238,11 +238,12 @@
   }
 
   .mobile-menu {
-    background-color: white;
+    background-color: black;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     padding: 16px 24px;
+    border-top: 1px solid #c4c4c4;
   }
 
   .menu__home-link {
@@ -251,7 +252,7 @@
     font-weight: 500;
     background: none;
     border: none;
-    color: black;
+    color: white;
     cursor: pointer;
     margin-left: 20px;
   }
@@ -262,7 +263,7 @@
     font-weight: 500;
     background: none;
     border: none;
-    color: black;
+    color: white;
     cursor: pointer;
     margin-left: 30px;
   }
@@ -271,12 +272,20 @@
     border-radius: 30px;
     width: 272px;
     height: 56px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
   }
 
   .menu-out__button {
     border-radius: 30px;
     width: 272px;
     height: 56px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
   }
 
   .menu__home-link:hover,
@@ -284,5 +293,13 @@
   .menu-register__button:hover,
   .menu-out__button:hover {
     opacity: 0.7;
+  }
+
+  .header_open-mobile {
+    background-color: black;
+  }
+
+  .header__title_white {
+    color: white;
   }
 }

@@ -62,7 +62,7 @@
 
 @media screen and (max-width: 320px) {
   .search__results-container {
-    padding: 40px 16px;
+    padding: 40px 8px;
   }
 
   .search__results-title {

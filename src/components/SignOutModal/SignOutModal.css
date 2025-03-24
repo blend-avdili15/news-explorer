@@ -52,3 +52,13 @@
 .sign-out-cancel:hover {
   opacity: 0.6;
 }
+
+@media screen and (max-width: 320px) {
+  .sign-out-modal {
+    width: 305px;
+    height: 245px;
+    position: absolute;
+    top: 90px;
+    border-radius: 0;
+  }
+}

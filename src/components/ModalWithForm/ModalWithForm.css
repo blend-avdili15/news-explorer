@@ -141,7 +141,6 @@
 
 @media screen and (max-width: 768px) {
   .modal__content {
-    max-width: 90%;
     padding: 20px;
   }
 
@@ -156,5 +155,34 @@
 
   .modal__switch-button {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .modal {
+    position: absolute;
+    top: 131px;
+    height: 376px;
+  }
+
+  .modal__content {
+    border-radius: 0;
+    padding-bottom: 114px;
+  }
+
+  .modal__input {
+  }
+
+  .modal__submit {
+  }
+
+  .modal__switch-button {
+  }
+
+  .modal__close {
+    right: 8px;
+    top: -60px;
+    padding: 0;
+    cursor: pointer;
   }
 }
