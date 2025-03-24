@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import github from "../../images/github.svg";
-import facebook from "../../images/facebook.svg";
+import linkedIn from "../../images/linkedIn.svg";
 
 function Footer({}) {
   return (
@@ -25,8 +25,8 @@ function Footer({}) {
             <img src={github} alt="github" className="footer__icon" />
           </a>
 
-          <a href="https://facebook.com">
-            <img src={facebook} alt="facebook" className="footer__icon" />
+          <a href="https://www.linkedin.com/in/blend-avdili-820985139/">
+            <img src={linkedIn} alt="facebook" className="footer__icon" />
           </a>
         </div>
       </div>
