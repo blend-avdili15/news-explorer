@@ -123,6 +123,7 @@
   align-items: center;
   gap: 42px;
   margin-right: 104px;
+  margin-bottom: -31px;
 }
 
 .header__register {
@@ -134,6 +135,7 @@
   border-radius: 100px;
   background: none;
   border: 1px solid #ffffff;
+  margin-bottom: 28px;
 }
 
 .header__register:hover {
