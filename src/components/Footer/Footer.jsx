@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import github from "../../images/github.svg";
-import linkedIn from "../../images/linkedIn.svg";
+import linkedIn from "../../images/linkedin.svg";
 
 function Footer({}) {
   return (
