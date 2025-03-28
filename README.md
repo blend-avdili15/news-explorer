@@ -1,3 +1,7 @@
-<!-- Temporary change to trigger pull request -->
+## Live Demo
 
-<!-- Should I wait on deployment till everything is checked? Then deploy to get full approved or just do the deployment now?>
+https://news-explorer-ph5r.onrender.com
+
+## Backend Link
+
+https://news-explorer-backend-k3h6.onrender.com
