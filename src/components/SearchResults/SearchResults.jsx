@@ -8,6 +8,7 @@ function SearchResults({
   handleSaveArticle,
   handleDeleteArticle,
   savedArticles = [],
+  isLoggedIn,
 }) {
   const [visibleCount, setVisibleCount] = useState(3);
 
@@ -32,7 +33,11 @@ function SearchResults({
 
         {visibleCount < articles.length && (
           <button
-            className="search__results-button"
+            className={`search__results-button ${
+              isLoggedIn
+                ? "search__results-button_logged-in"
+                : "search__results-button_logged-out"
+            }`}
             onClick={() => setVisibleCount(visibleCount + 3)}
           >
             Show more

@@ -14,6 +14,7 @@ import "./App.css";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import SignOutModal from "../SignOutModal/SignOutModal";
+import SuccessModal from "../SuccessModal/SuccessModal";
 
 function App() {
   // State Variables /////////////////
@@ -23,6 +24,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [savedArticles, setSavedArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   // Modal Handlers /////////////////
 
@@ -39,8 +41,10 @@ function App() {
 
   const handleSignUp = ({ email, password, username }) => {
     return signUp({ email, password, username })
-      .then(() => handleSignIn({ email, password }))
-      .then(() => setActiveModal(""))
+      .then(() => {
+        setActiveModal("");
+        setIsSuccessModalOpen(true);
+      })
       .catch((err) => {
         console.error("Sign in error:", err);
         throw err;
@@ -78,6 +82,11 @@ function App() {
     setSavedArticles([]);
     navigate("/", { replace: true });
     closeActiveModal();
+  };
+
+  const handleSuccessSignInClick = () => {
+    setIsSuccessModalOpen(false);
+    setActiveModal("login");
   };
 
   const fetchSavedArticles = (token) => {
@@ -257,6 +266,11 @@ function App() {
         isOpen={activeModal === "signout"}
         onClose={closeActiveModal}
         onSignOut={handleSignOut}
+      />
+      <SuccessModal
+        isOpen={isSuccessModalOpen}
+        onClose={() => setIsSuccessModalOpen}
+        onSignIn={handleSuccessSignInClick}
       />
     </CurrentUserContext.Provider>
   );

@@ -137,6 +137,21 @@
   text-align: center;
 }
 
+.modal__success-button {
+  background: none;
+  border: none;
+  color: #2f71e5;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.modal__success-button:hover {
+  opacity: 0.7;
+  text-decoration: underline;
+}
+
 /* Tablet Version */
 
 @media screen and (max-width: 768px) {
