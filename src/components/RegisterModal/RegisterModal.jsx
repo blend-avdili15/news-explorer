@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ onClose, isOpen, onSignUp, onSwitchToLogin }) {
+function RegisterModal({
+  onClose,
+  isOpen,
+  onSignUp,
+  onSwitchToLogin,
+  onSuccess,
+}) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -48,7 +54,11 @@ function RegisterModal({ onClose, isOpen, onSignUp, onSwitchToLogin }) {
     setFormError("");
 
     onSignUp(formData)
-      .then(() => onClose())
+      .then(() => {
+        if (onSuccess) {
+          onSuccess();
+        }
+      })
       .catch((err) => {
         setFormError("This email is not available");
       });

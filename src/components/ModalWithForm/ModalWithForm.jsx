@@ -12,16 +12,7 @@ function ModalWithForm({
   hideForm,
 }) {
   useModalClose(isOpen, onClose);
-
-  function ModalWithForm({
-    isOpen,
-    onClose,
-    onSubmit,
-    title,
-    children,
-    buttonText,
-    hideForm,
-  }) {
+  {
     return (
       <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
         <div className="modal__content">

@@ -255,6 +255,10 @@ function App() {
         onClose={closeActiveModal}
         onSignUp={handleSignUp}
         onSwitchToLogin={switchToLogin}
+        onSuccess={() => {
+          setActiveModal("");
+          setIsSuccessModalOpen(true);
+        }}
       />
       <LoginModal
         isOpen={activeModal === "login"}
@@ -269,7 +273,7 @@ function App() {
       />
       <SuccessModal
         isOpen={isSuccessModalOpen}
-        onClose={() => setIsSuccessModalOpen}
+        onClose={() => setIsSuccessModalOpen(false)}
         onSignIn={handleSuccessSignInClick}
       />
     </CurrentUserContext.Provider>

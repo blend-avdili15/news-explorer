@@ -1,0 +1,32 @@
+.success-modal-wrapper {
+  margin: 43px 79px 14px 36px;
+}
+
+.success-modal-wrapper .modal__title {
+  width: 315px;
+  height: 56px;
+  font: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0%;
+  color: #000000;
+  padding-top: 7px;
+}
+
+.success-modal-wrapper .modal__close {
+}
+
+.modal__button-container {
+  width: 228px;
+  height: 18px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.modal__success-button {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #2f71e5;
+  margin: 0;
+}
