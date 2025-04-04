@@ -46,7 +46,7 @@
 .search__results-button:hover,
 .search__results-button_logged-out,
 .search__results-button_logged-in {
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 /* Tablet Version */
@@ -71,14 +71,22 @@
 }
 
 @media screen and (max-width: 320px) {
+  .search__results {
+    width: 100%;
+  }
+
   .search__results-container {
-    padding: 40px 8px;
+    /* width: 320px; */
+    /* padding: 40px 8px; */
+    padding: 0;
+    padding-bottom: 30px;
   }
 
   .search__results-title {
     font-size: 30px;
     margin-top: 16px;
     margin-bottom: 58px;
+    width: 288px;
   }
 
   .search__results-button {

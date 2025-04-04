@@ -62,7 +62,7 @@
 }
 
 .header__nav-item:hover {
-  opacity: 0.6;
+  opacity: 0.8;
   cursor: pointer;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .header__profile:hover {
-  opacity: 0.6;
+  opacity: 0.8;
   cursor: pointer;
 }
 
@@ -103,7 +103,7 @@
 }
 
 .header__profile-button:hover {
-  opacity: 0.6;
+  opacity: 0.8;
   cursor: pointer;
 }
 
@@ -139,7 +139,7 @@
 }
 
 .header__register:hover {
-  opacity: 0.6;
+  opacity: 0.8;
   cursor: pointer;
 }
 
@@ -181,7 +181,7 @@
 
 .mobile-menu__button:hover,
 .mobile-menu__link:hover {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* Tablet Version */
@@ -213,6 +213,7 @@
 @media screen and (max-width: 320px) {
   .header {
     width: 100%;
+    max-width: 230px;
   }
 
   .header__menu-button {

@@ -5,7 +5,7 @@
 .success-modal-wrapper .modal__title {
   width: 315px;
   height: 56px;
-  font: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 900;
   letter-spacing: 0%;

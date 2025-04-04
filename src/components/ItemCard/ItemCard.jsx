@@ -31,7 +31,7 @@ function ItemCard({
   };
 
   return (
-    <li className="card">
+    <article className="card">
       <img
         className="card__image"
         src={
@@ -39,7 +39,7 @@ function ItemCard({
             ? article.urlToImage
             : "https://picsum.photos/200/300"
         }
-        alt={article.title}
+        alt={article.title || "News article image"}
       />
 
       {isSavedNewsPage && (
@@ -59,7 +59,7 @@ function ItemCard({
         <button
           onClick={handleBookmarkClick}
           className={bookmarkButtonClass}
-          aria-label="Save article"
+          aria-label={isBookmarked ? "Unsave article" : "Save article"}
         />
       )}
 
@@ -77,7 +77,7 @@ function ItemCard({
           {article.source?.name || "Unknown Source"}
         </p>
       </div>
-    </li>
+    </article>
   );
 }
 

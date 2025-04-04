@@ -96,7 +96,7 @@
 }
 
 .main__search-button:hover {
-  opacity: 0.6px;
+  opacity: 0.8;
 }
 
 /* Tablet */
@@ -131,8 +131,9 @@
 
 @media screen and (max-width: 320px) {
   .main__content {
-    /* width: 320px;
-    height: 480px; 536px */
+    width: 100%;
+    max-width: 315px;
+    height: 480px;
   }
 
   .main__heading {
