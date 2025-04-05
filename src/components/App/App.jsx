@@ -228,6 +228,7 @@ function App() {
                   handleSaveArticle={handleSaveArticle}
                   savedArticles={savedArticles}
                   handleDeleteArticle={handleDeleteArticle}
+                  isLoggedIn={isLoggedIn}
                 />
               }
             />

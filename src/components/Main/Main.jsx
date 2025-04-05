@@ -7,7 +7,12 @@ import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import { fetchNews } from "../../utils/newsApi";
 
-function Main({ handleSaveArticle, savedArticles, handleDeleteArticle }) {
+function Main({
+  handleSaveArticle,
+  savedArticles,
+  handleDeleteArticle,
+  isLoggedIn,
+}) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -45,10 +50,10 @@ function Main({ handleSaveArticle, savedArticles, handleDeleteArticle }) {
     <main className="main">
       <section className="main__content">
         <div className="main__heading">
-          <h2 className="main__title">
-            What's going on in
-            <span className="main__title-span">the world?</span>
-          </h2>
+          <h1 className="main__title">
+            What's going on in <br className="main__break-desktop" />
+            the world?
+          </h1>
           <p className="main__subtitle">
             Find the lastest news on any topic and save them in your personal
             account.
@@ -66,6 +71,7 @@ function Main({ handleSaveArticle, savedArticles, handleDeleteArticle }) {
         handleSaveArticle={handleSaveArticle}
         savedArticles={savedArticles}
         handleDeleteArticle={handleDeleteArticle}
+        isLoggedIn={isLoggedIn}
       />
 
       <About />

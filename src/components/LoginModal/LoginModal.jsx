@@ -53,11 +53,12 @@ function LoginModal({ onClose, isOpen, onSwitchToRegister, onSignIn }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label className="modal__label">
+      <label htmlFor="email" className="modal__label">
         Email{" "}
         <input
           type="email"
           name="email"
+          id="modal__input_login-email"
           className="modal__input modal__input_login-email"
           placeholder="Enter email"
           value={formData.email}
@@ -71,11 +72,12 @@ function LoginModal({ onClose, isOpen, onSwitchToRegister, onSignIn }) {
           </span>
         )}
       </label>
-      <label className="modal__label">
+      <label htmlFor="password" className="modal__label">
         Password{" "}
         <input
           type="password"
           name="password"
+          id="modal__input_login_password"
           className="modal__input modal__input_login_password"
           placeholder="Enter password"
           value={formData.password}

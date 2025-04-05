@@ -72,11 +72,12 @@ function RegisterModal({
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label className="modal__label">
+      <label htmlFor="email" className="modal__label">
         Email{" "}
         <input
           type="email"
           name="email"
+          id="modal__input_register_email"
           className="modal__input modal__input_register_email"
           placeholder="Enter email"
           value={formData.email}
@@ -90,11 +91,12 @@ function RegisterModal({
           </span>
         )}
       </label>
-      <label className="modal__label">
+      <label htmlFor="password" className="modal__label">
         Password{" "}
         <input
           type="password"
           name="password"
+          id="modal__input_register_password"
           className="modal__input modal__input_register_password"
           placeholder="Enter password"
           value={formData.password}
@@ -103,11 +105,12 @@ function RegisterModal({
         />
         <span className="modal__error" id="register-password-error" />
       </label>
-      <label className="modal__label">
+      <label htmlFor="username" className="modal__label">
         Username{" "}
         <input
           type="username"
           name="username"
+          id="modal__input_register_username"
           className="modal__input modal__input_register_username"
           placeholder="Enter your username"
           value={formData.username}

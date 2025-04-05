@@ -11,6 +11,7 @@ import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
 function Header({
   isLoggedIn,
   handleRegisterClick,
+  handleLoginClick,
   handleSignOutClick,
   isModalOpen,
 }) {
@@ -53,40 +54,46 @@ function Header({
       )}
 
       {isLoggedIn ? (
-        <div className="header__logged-in">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `header__nav-item ${
-                isSavedNews ? "header__nav-item_black" : ""
-              } ${
-                isActive
-                  ? isSavedNews
-                    ? "header__nav-item_active_black"
-                    : "header__nav-item_active"
-                  : ""
-              }`
-            }
-          >
-            Home
-          </NavLink>
+        <nav className="header__logged-in">
+          <ul className="header__nav-list">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `header__nav-item ${
+                    isSavedNews ? "header__nav-item_black" : ""
+                  } ${
+                    isActive
+                      ? isSavedNews
+                        ? "header__nav-item_active_black"
+                        : "header__nav-item_active"
+                      : ""
+                  }`
+                }
+              >
+                Home
+              </NavLink>
+            </li>
 
-          <NavLink
-            to="/savednews"
-            className={({ isActive }) =>
-              `header__nav-item ${
-                isSavedNews ? "header__nav-item_black" : ""
-              } ${
-                isActive
-                  ? isSavedNews
-                    ? "header__nav-item_active_black"
-                    : "header__nav-item_active"
-                  : ""
-              }`
-            }
-          >
-            Saved articles
-          </NavLink>
+            <li>
+              <NavLink
+                to="/savednews"
+                className={({ isActive }) =>
+                  `header__nav-item ${
+                    isSavedNews ? "header__nav-item_black" : ""
+                  } ${
+                    isActive
+                      ? isSavedNews
+                        ? "header__nav-item_active_black"
+                        : "header__nav-item_active"
+                      : ""
+                  }`
+                }
+              >
+                Saved articles
+              </NavLink>
+            </li>
+          </ul>
 
           <div
             className={`header__profile ${
@@ -107,22 +114,28 @@ function Header({
               alt="header-arrow"
             />
           </div>
-        </div>
+        </nav>
       ) : (
-        <div className="header__container">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `header__nav-item ${isActive ? "header__nav-item_active" : ""}`
-            }
-          >
-            Home
-          </NavLink>
+        <nav className="header__container">
+          <ul className="header__nav-list">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `header__nav-item ${
+                    isActive ? "header__nav-item_active" : ""
+                  }`
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+          </ul>
 
-          <button onClick={handleRegisterClick} className="header__register">
+          <button onClick={handleLoginClick} className="header__register">
             Sign in
           </button>
-        </div>
+        </nav>
       )}
 
       {isMobileMenuOpen && (
@@ -162,7 +175,7 @@ function Header({
             <button
               onClick={() => {
                 setIsMobileMenuOpen(false);
-                handleRegisterClick();
+                handleLoginClick();
               }}
               className="menu-register__button"
             >

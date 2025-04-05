@@ -44,8 +44,16 @@
 }
 
 .about__image {
-  width: 464px;
+  /* width: 464px;
   height: 464px;
+  border-radius: 1000px; */
+
+  width: 100%;
+  height: 100%;
+  max-width: 464px;
+  max-height: 464px;
+  object-fit: cover;
+  object-position: center;
   border-radius: 1000px;
 }
 

@@ -32,7 +32,7 @@
   margin-top: 64px;
   margin-left: 476px;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .search__results-button_logged-in {
@@ -44,9 +44,18 @@
 }
 
 .search__results-button:hover,
-.search__results-button_logged-out,
-.search__results-button_logged-in {
-  opacity: 0.8;
+.search__results-button_logged-out:hover,
+.search__results-button_logged-in:hover {
+  transform: scale(1.05); /* slightly enlarges */
+}
+
+.search__results-button:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.search__results-button:active {
+  transform: scale(0.97); /* slight push effect when clicking */
 }
 
 /* Tablet Version */
@@ -85,7 +94,8 @@
   .search__results-title {
     font-size: 30px;
     margin-top: 16px;
-    margin-bottom: 58px;
+    margin-bottom: 24px;
+    margin-left: 13px;
     width: 288px;
   }
 

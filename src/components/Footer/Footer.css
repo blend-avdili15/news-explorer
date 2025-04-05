@@ -35,6 +35,7 @@
   width: 163px;
   height: 24px;
   margin-right: 40px;
+  list-style: none;
 }
 
 .footer__nav-item {
@@ -46,17 +47,28 @@
   font-weight: 400;
 }
 
+.footer__nav-item:hover {
+  opacity: 0.5;
+  /* transition: opacity 0.2s ease; */
+}
+
 .footer__nav-social {
   display: flex;
   flex-direction: row;
   gap: 20px;
   margin-right: 104px;
   cursor: pointer;
+  list-style: none;
 }
 
 .footer__icon {
   width: 24px;
   height: 24px;
+}
+
+.footer__icon:hover {
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
 }
 
 /* Tablet */
@@ -106,7 +118,7 @@
     margin: 0;
     position: relative;
     bottom: -135px;
-    left: 2px;
+    left: -2px;
   }
 
   .footer__nav {

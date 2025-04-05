@@ -17,7 +17,7 @@ function SearchResults({
   return (
     <div className="search__results">
       <div className="search__results-container">
-        <h2 className="search__results-title">Search Results</h2>
+        <h1 className="search__results-title">Search Results</h1>
 
         <div className="cards__list">
           {articles.slice(0, visibleCount).map((article, index) => (
@@ -27,6 +27,7 @@ function SearchResults({
               handleSaveClick={handleSaveArticle}
               handleDeleteArticle={handleDeleteArticle}
               savedArticles={savedArticles}
+              isLoggedIn={isLoggedIn}
             />
           ))}
         </div>

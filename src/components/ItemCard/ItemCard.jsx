@@ -9,6 +9,7 @@ function ItemCard({
   saved,
   article,
   savedArticles = [],
+  isLoggedIn,
 }) {
   const currentUser = useContext(CurrentUserContext);
   const location = useLocation();
@@ -56,11 +57,20 @@ function ItemCard({
           />
         </div>
       ) : (
-        <button
-          onClick={handleBookmarkClick}
-          className={bookmarkButtonClass}
-          aria-label={isBookmarked ? "Unsave article" : "Save article"}
-        />
+        <div
+          className={`card__save-container ${
+            !isLoggedIn ? "card__save-container_logged-out" : ""
+          }`}
+        >
+          {!isLoggedIn && (
+            <p className="card__save-hover">Sign in to save articles</p>
+          )}
+          <button
+            onClick={handleBookmarkClick}
+            className={bookmarkButtonClass}
+            aria-label={isBookmarked ? "Unsave article" : "Save article"}
+          />
+        </div>
       )}
 
       <div className="card__content">
