@@ -4,17 +4,17 @@ import "./SuccessModal.css";
 
 function SuccessModal({ isOpen, onClose, onSignIn }) {
   return (
-    <div className="success-modal-wrapper">
+    <div className="success-modal">
       <ModalWithForm
         isOpen={isOpen}
         onClose={onClose}
         title="Registration successfully completed!"
         hideForm
       >
-        <div className="modal__button-container">
+        <div className="success-modal__button-container">
           <button
             type="button"
-            className="modal__success-button"
+            className="success-modal__success-button"
             onClick={onSignIn}
           >
             Sign in

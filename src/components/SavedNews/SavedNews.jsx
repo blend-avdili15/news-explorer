@@ -17,7 +17,7 @@ function SavedNews({ savedArticles, handleDeleteArticle }) {
       : keywords.join(", ");
 
   return (
-    <div className="saved__news">
+    <div className="saved">
       <div className="saved__content">
         <p className="saved__header">Saved articles</p>
         <h1 className="saved__title">
@@ -33,7 +33,7 @@ function SavedNews({ savedArticles, handleDeleteArticle }) {
       <section className="saved__cards">
         <div className="saved__cards-container">
           {savedArticles.length > 0 ? (
-            <div className="cards__list">
+            <div className="saved__cards-list">
               {savedArticles.map((article, index) => (
                 <ItemCard
                   key={index}

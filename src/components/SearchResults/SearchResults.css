@@ -19,6 +19,16 @@
   margin: 0 0 64px 0;
 }
 
+.search__cards-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
 .search__results-button {
   width: 299px;
   height: 64px;
@@ -55,7 +65,8 @@
 }
 
 .search__results-button:active {
-  transform: scale(0.97); /* slight push effect when clicking */
+  transform: scale(0.97);
+  background-color: #e8e8e8;
 }
 
 /* Tablet Version */

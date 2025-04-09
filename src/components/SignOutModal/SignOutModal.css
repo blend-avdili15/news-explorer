@@ -1,4 +1,4 @@
-.sign-out-modal {
+.sign-out {
   position: absolute;
   width: 485px;
   height: 236px;
@@ -11,7 +11,7 @@
   visibility: visible;
 }
 
-.sign-out-container {
+.sign-out__container {
   padding: 60px 32px 0;
   display: flex;
   flex-direction: column;
@@ -21,13 +21,13 @@
   gap: 10px;
 }
 
-.sign-out-title {
+.sign-out__title {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-.sign-out-yes {
+.sign-out__yes {
   background-color: black;
   color: white;
   padding: 10px 15px;
@@ -37,11 +37,11 @@
   margin-right: 20px;
 }
 
-.sign-out-yes:hover {
+.sign-out__yes:hover {
   opacity: 0.6;
 }
 
-.sign-out-cancel {
+.sign-out__cancel {
   background-color: #ccc;
   padding: 10px 15px;
   border: none;
@@ -49,12 +49,12 @@
   cursor: pointer;
 }
 
-.sign-out-cancel:hover {
+.sign-out__cancel:hover {
   opacity: 0.6;
 }
 
 @media screen and (max-width: 320px) {
-  .sign-out-modal {
+  .sign-out {
     width: 305px;
     height: 245px;
     position: absolute;

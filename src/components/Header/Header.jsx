@@ -29,7 +29,7 @@ function Header({
     <header
       className={`header ${isMobileMenuOpen ? "header_open-mobile" : ""}`}
     >
-      <h2
+      <h1
         className={`header__title ${
           isMobileMenuOpen
             ? "header__title_white"
@@ -39,7 +39,7 @@ function Header({
         }`}
       >
         NewsExplorer
-      </h2>
+      </h1>
 
       {!isModalOpen && (
         <button className="header__menu-button" onClick={toggleMobileMenu}>
@@ -139,9 +139,9 @@ function Header({
       )}
 
       {isMobileMenuOpen && (
-        <div className="mobile-menu">
+        <div className="header__mobile-menu">
           <button
-            className="menu__home-link"
+            className="header__mobile-menu-link"
             onClick={() => {
               setIsMobileMenuOpen(false);
               navigate("/");
@@ -153,7 +153,7 @@ function Header({
           {isLoggedIn ? (
             <>
               <button
-                className="menu__saved-link"
+                className="header__menu-saved-link"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   navigate("/savednews");
@@ -166,7 +166,7 @@ function Header({
                   setIsMobileMenuOpen(false);
                   handleSignOutClick();
                 }}
-                className="menu-out__button"
+                className="header__menu-out-button"
               >
                 Sign out
               </button>
@@ -177,7 +177,7 @@ function Header({
                 setIsMobileMenuOpen(false);
                 handleLoginClick();
               }}
-              className="menu-register__button"
+              className="header__menu-register-button"
             >
               Sign in
             </button>

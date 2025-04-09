@@ -6,9 +6,9 @@ import linkedIn from "../../images/linkedin.svg";
 function Footer({}) {
   return (
     <footer className="footer">
-      <p className="footer__copyright">
+      <h1 className="footer__copyright">
         © {new Date().getFullYear()} Supersite, Powered by News API
-      </p>
+      </h1>
 
       <nav className="footer__nav">
         <ul className="footer__nav-links">

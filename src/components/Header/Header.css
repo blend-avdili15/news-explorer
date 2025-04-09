@@ -168,7 +168,7 @@
   cursor: pointer;
 }
 
-.mobile-menu {
+.header__mobile-menu {
   position: absolute;
   top: 100%;
   right: 0;
@@ -183,21 +183,21 @@
   list-style: none;
 }
 
-.mobile-menu__link,
-.mobile-menu__button {
+.header__mobile-menu-link,
+.header__mobile-menu-out-button {
   font-size: 18px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   text-align: left;
   background: none;
   border: none;
-  color: black;
+  color: white;
   padding: 8px 0;
   cursor: pointer;
 }
 
-.mobile-menu__button:hover,
-.mobile-menu__link:hover {
+.header__mobile-menu-out-button:hover,
+.header__mobile-menu-link:hover {
   opacity: 0.8;
 }
 
@@ -231,6 +231,7 @@
   .header {
     width: 100%;
     max-width: 230px;
+    padding-right: 34px;
   }
 
   .header__menu-button {
@@ -259,7 +260,7 @@
     display: none;
   }
 
-  .mobile-menu {
+  .header__mobile-menu {
     background-color: black;
     display: flex;
     flex-direction: row;
@@ -268,7 +269,7 @@
     border-top: 1px solid #c4c4c4;
   }
 
-  .menu__home-link {
+  .header__mobile-menu-link {
     font-size: 18px;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
@@ -279,7 +280,7 @@
     margin-left: 20px;
   }
 
-  .menu__saved-link {
+  .header__menu-saved-link {
     font-size: 18px;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
@@ -290,7 +291,7 @@
     margin-left: 30px;
   }
 
-  .menu-register__button {
+  .header__menu-register-button {
     border-radius: 30px;
     width: 272px;
     height: 56px;
@@ -300,7 +301,7 @@
     cursor: pointer;
   }
 
-  .menu-out__button {
+  .header__menu-out-button {
     border-radius: 30px;
     width: 272px;
     height: 56px;
@@ -310,10 +311,10 @@
     cursor: pointer;
   }
 
-  .menu__home-link:hover,
-  .menu__saved-link:hover,
-  .menu-register__button:hover,
-  .menu-out__button:hover {
+  .header__mobile-menu-link:hover,
+  .header__menu-saved-link:hover,
+  .header__menu-register-button:hover,
+  .header__menu-out-button:hover {
     opacity: 0.7;
   }
 

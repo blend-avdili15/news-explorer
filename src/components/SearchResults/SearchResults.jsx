@@ -19,7 +19,7 @@ function SearchResults({
       <div className="search__results-container">
         <h1 className="search__results-title">Search Results</h1>
 
-        <div className="cards__list">
+        <div className="search__cards-list">
           {articles.slice(0, visibleCount).map((article, index) => (
             <ItemCard
               key={index}
