@@ -140,27 +140,55 @@ function Header({
 
       {isMobileMenuOpen && (
         <div className="header__mobile-menu">
-          <button
-            className="header__mobile-menu-link"
-            onClick={() => {
-              setIsMobileMenuOpen(false);
-              navigate("/");
-            }}
-          >
-            Home
-          </button>
-
-          {isLoggedIn ? (
+          {!isLoggedIn && (
             <>
               <button
-                className="header__menu-saved-link"
+                className="header__mobile-menu-link"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  navigate("/savednews");
+                  navigate("/");
                 }}
               >
-                Saved articles
+                Home
               </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  handleLoginClick();
+                }}
+                className="header__menu-register-button"
+              >
+                Sign in
+              </button>
+            </>
+          )}
+
+          {isLoggedIn && (
+            <>
+              {isSavedNews ? (
+                // If on Saved News, show Home
+                <button
+                  className="header__mobile-menu-link"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    navigate("/");
+                  }}
+                >
+                  Home
+                </button>
+              ) : (
+                // If on Home, show Saved Articles
+                <button
+                  className="header__mobile-menu-link"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    navigate("/savednews");
+                  }}
+                >
+                  Saved articles
+                </button>
+              )}
+
               <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);
@@ -171,16 +199,6 @@ function Header({
                 Sign out
               </button>
             </>
-          ) : (
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                handleLoginClick();
-              }}
-              className="header__menu-register-button"
-            >
-              Sign in
-            </button>
           )}
         </div>
       )}
