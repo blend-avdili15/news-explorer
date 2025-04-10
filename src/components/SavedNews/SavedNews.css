@@ -58,7 +58,8 @@
 
 .saved__cards-container {
   width: 100%;
-  padding: 60px 106px 60px 102px;
+  /* padding: 60px 106px 60px 102px; */
+  padding: 60px 0;
 }
 
 .saved__cards-list {
@@ -67,7 +68,7 @@
   flex-direction: row;
   gap: 20px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
 }
 
@@ -98,7 +99,11 @@
   }
 
   .saved__cards-container {
-    padding: 40px 20px;
+    padding: 40px 0;
+  }
+
+  .saved__cards-list {
+    justify-content: center;
   }
 }
 
@@ -122,10 +127,11 @@
 
   .saved__keywords {
     padding-top: 16px;
+    width: 288px;
   }
 
   .saved__cards-container {
-    padding: 40px 9px;
+    padding: 40px 0;
     width: 100%;
   }
 }

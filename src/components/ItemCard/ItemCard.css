@@ -92,6 +92,10 @@
   background-image: url(../../images/trash-hover.svg);
 }
 
+.card__delete-button:active {
+  transform: scale(0.97);
+}
+
 .card__bookmark {
   position: absolute;
   top: -5px;
@@ -234,8 +238,8 @@
   }
 
   .card__bookmark {
-    top: 8px;
-    right: 8px;
+    top: -17px;
+    right: -17px;
   }
 
   .card__delete-info {
@@ -311,8 +315,8 @@
   }
 
   .card__bookmark {
-    top: 8px;
-    right: 8px;
+    /* top: 8px;
+    right: 8px; */
   }
 
   .card__delete-info {

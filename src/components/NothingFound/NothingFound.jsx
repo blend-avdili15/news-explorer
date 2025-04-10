@@ -9,7 +9,7 @@ function NothingFound({}) {
       <h1 className="nothing-found__title">Nothing found</h1>
       <p className="nothing-found__text">
         Sorry, but nothing matched
-        <span className="nothing-found__text_span">your search terms.</span>
+        <span className="nothing-found__text--span">your search terms.</span>
       </p>
     </div>
   );

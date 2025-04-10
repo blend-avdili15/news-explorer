@@ -58,7 +58,7 @@
   color: white;
   padding: 0 0 12px;
   margin: 0 15px;
-  height: 40px;
+  height: 35px;
   border-bottom: 2px solid transparent;
   list-style: none;
 }
@@ -92,7 +92,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-bottom: 37px;
+  margin-bottom: 35px;
   list-style: none;
 }
 
@@ -120,6 +120,10 @@
 .header__profile-button:hover {
   opacity: 0.8;
   cursor: pointer;
+}
+
+.header__profile-button:active {
+  transform: scale(0.97);
 }
 
 .header__profile-button_black {
@@ -225,6 +229,10 @@
   .header__profile {
     width: auto;
   }
+
+  .header__nav-item {
+    height: 34px;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -245,6 +253,9 @@
 
   .header__title {
     margin-left: -20px;
+    font-family: "Roboto-Slab", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
   }
 
   .header__menu-icon {
@@ -277,7 +288,7 @@
     border: none;
     color: white;
     cursor: pointer;
-    margin-left: 20px;
+    /* margin-left: 20px; */
   }
 
   .header__menu-saved-link {
@@ -299,6 +310,9 @@
     color: white;
     border: 1px solid white;
     cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
   }
 
   .header__menu-out-button {

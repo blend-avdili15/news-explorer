@@ -1,8 +1,11 @@
-.success-modal {
-  margin: 43px 79px 14px 36px;
+/* .success-modal {
+  /* margin: 43px 79px 14px 36px; */
+/* margin: 70px 79px 14px 36px; */
+.modal {
+  bottom: 120px;
 }
 
-.success-modal-wrapper .modal__title {
+.modal__title {
   width: 315px;
   height: 56px;
   font-family: "Roboto", sans-serif;
@@ -26,4 +29,19 @@
   font-size: 18px;
   color: #2f71e5;
   margin: 0;
+  background: none;
+  border: none;
 }
+
+/* @media screen and (max-width: 320px) 
+  .modal {
+    top: -20px;
+  }
+
+  .modal__content {
+    padding-bottom: 48px;
+  }
+
+  .modal__close {
+    visibility: hidden;
+  }  */

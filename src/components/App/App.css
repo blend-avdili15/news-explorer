@@ -1,7 +1,7 @@
 .page {
   min-height: 100vh;
-  overflow-x: hidden;
   width: 100%;
+  max-width: 1440px;
   outline: 1px solid red;
 }
 
@@ -12,5 +12,4 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }

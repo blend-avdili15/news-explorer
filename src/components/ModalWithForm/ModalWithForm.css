@@ -202,7 +202,8 @@
 @media screen and (max-width: 320px) {
   .modal {
     position: absolute;
-    top: 131px;
+    /* top: 131px; */
+    top: 122px;
     height: 376px;
   }
 

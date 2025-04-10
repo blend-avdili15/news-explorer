@@ -14,16 +14,16 @@ function SearchForm({ onSearch }) {
   };
 
   return (
-    <form className="main__search" onSubmit={handleSubmit}>
-      <div className="main__search-container">
+    <form className="search-form" onSubmit={handleSubmit}>
+      <div className="search-form__container">
         <input
           type="text"
-          className="main__search-input"
+          className="search-form__input"
           placeholder="Enter topic"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button type="submit" className="main__search-button">
+        <button type="submit" className="search-form__button">
           Search
         </button>
       </div>

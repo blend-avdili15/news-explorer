@@ -59,7 +59,7 @@
   .about {
     flex-direction: column; /* Stack content */
     height: 354px;
-    padding: 40px 20px;
+    padding: 40px 0;
   }
 
   .about__content {

@@ -77,11 +77,11 @@
     flex-direction: row;
     align-items: center;
     height: auto;
-    padding: 20px;
+    /* padding: 20px; */
   }
 
   .footer__copyright {
-    margin-left: 0;
+    margin-left: 15px;
     text-align: center;
   }
 
@@ -106,7 +106,7 @@
   .footer {
     width: 300px;
     height: 176px;
-    padding: 10px 0 0;
+    /* padding: 10px 0 0; */
     flex-direction: column;
     justify-content: flex-start;
   }
@@ -126,6 +126,10 @@
     width: 288px;
     margin: 0;
     padding: 0;
+  }
+
+  .footer__nav-item {
+    margin-left: -41px;
   }
 
   .footer__nav-links {
