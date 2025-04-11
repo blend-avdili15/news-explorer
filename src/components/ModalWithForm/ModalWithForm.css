@@ -178,8 +178,12 @@
   text-decoration: underline;
 }
 
-/* Tablet Version */
+/* * {
+  outline: thin solid red;
+} */
 
+/* Tablet Version */
+/* 1280 */
 @media screen and (max-width: 768px) {
   .modal__content {
     padding: 20px;
@@ -198,19 +202,16 @@
     width: 100%;
   }
 }
-
+/* 650 */
 @media screen and (max-width: 320px) {
   .modal {
-    position: absolute;
-    /* top: 131px; */
-    top: 122px;
-    height: 376px;
+    align-items: stretch;
   }
 
   .modal__content {
-    border-radius: 0;
-    /* padding-bottom: 114px; */
-    padding-bottom: 164px;
+    max-height: none;
+    margin-top: 82px;
+    border-radius: 16px 16px 0 0;
   }
 
   .modal__input {

@@ -11,7 +11,7 @@ function About() {
         </div>
 
         <div className="about__heading">
-          <h1 className="about__title">About the author</h1>
+          <h2 className="about__title">About the author</h2>
           <p className="about__subtitle">
             Hi! My name is Blend Avdili, and I'm a full-stack web developer with
             a passion for buidling clean, responsive, and user-focused

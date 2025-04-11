@@ -29,7 +29,7 @@ function Header({
     <header
       className={`header ${isMobileMenuOpen ? "header_open-mobile" : ""}`}
     >
-      <h1
+      <p
         className={`header__title ${
           isMobileMenuOpen
             ? "header__title_white"
@@ -39,7 +39,7 @@ function Header({
         }`}
       >
         NewsExplorer
-      </h1>
+      </p>
 
       {!isModalOpen && (
         <button className="header__menu-button" onClick={toggleMobileMenu}>

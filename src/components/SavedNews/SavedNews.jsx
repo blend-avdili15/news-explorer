@@ -19,11 +19,11 @@ function SavedNews({ savedArticles, handleDeleteArticle }) {
   return (
     <div className="saved">
       <div className="saved__content">
-        <p className="saved__header">Saved articles</p>
-        <h1 className="saved__title">
+        <h1 className="saved__header">Saved articles</h1>
+        <p className="saved__title">
           {currentUser?.username || "User"}, you have {savedArticles.length}{" "}
           saved <span className="saved__title-span">articles</span>
-        </h1>
+        </p>
         <p className="saved__keywords">
           By keywords:
           <span className="saved__keywords-span">{keywordDisplay}</span>
