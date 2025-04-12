@@ -6,7 +6,7 @@ function NothingFound({}) {
   return (
     <div className="nothing-found">
       <img src={nothing} alt="nothing found" className="nothing-found__image" />
-      <h1 className="nothing-found__title">Nothing found</h1>
+      <h2 className="nothing-found__title">Nothing found</h2>
       <p className="nothing-found__text">
         Sorry, but nothing matched
         <span className="nothing-found__text--span">your search terms.</span>

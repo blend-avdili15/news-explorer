@@ -53,12 +53,23 @@
   opacity: 0.6;
 }
 
+@media screen and (max-width: 515px) {
+  .sign-out {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .sign-out {
+    width: 320px;
+  }
+}
+
 @media screen and (max-width: 320px) {
   .sign-out {
     width: 305px;
-    height: 245px;
-    position: absolute;
-    top: -40px;
+    height: 100%;
+    top: 93px;
     border-radius: 0;
   }
 }

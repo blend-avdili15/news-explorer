@@ -9,7 +9,7 @@ function SignOutModal({ onClose, isOpen, onSignOut }) {
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="sign-out">
         <div className="sign-out__container">
-          <h1 className="sign-out__title">Are you sure you want to log out?</h1>
+          <h2 className="sign-out__title">Are you sure you want to log out?</h2>
           <div className="sign-out__buttons">
             <button onClick={onSignOut} className="sign-out__yes">
               Sign Out

@@ -81,7 +81,7 @@ function ItemCard({
             year: "numeric",
           })}
         </p>
-        <h1 className="card__title">{article.title}</h1>
+        <h2 className="card__title">{article.title}</h2>
         <p className="card__description">{article.description}</p>
         <p className="card__reference">
           {article.source?.name || "Unknown Source"}
