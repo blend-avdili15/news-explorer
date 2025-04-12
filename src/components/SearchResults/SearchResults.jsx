@@ -21,7 +21,7 @@ function SearchResults({
           <h2 className="search__title">Search Results</h2>
         </div>
 
-        <div className="search__cards-list">
+        <ul className="search__cards-list">
           {articles.slice(0, visibleCount).map((article, index) => (
             <ItemCard
               key={index}
@@ -32,7 +32,7 @@ function SearchResults({
               isLoggedIn={isLoggedIn}
             />
           ))}
-        </div>
+        </ul>
 
         <div className="search__button-container">
           {visibleCount < articles.length && (

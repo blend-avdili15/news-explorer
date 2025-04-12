@@ -129,7 +129,7 @@
 @media screen and (max-width: 320px) {
   .main__content {
     width: 100%;
-    max-width: 315px;
+    /* max-width: 315px; */
     height: 480px;
   }
 

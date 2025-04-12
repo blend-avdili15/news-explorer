@@ -33,7 +33,7 @@ function SavedNews({ savedArticles, handleDeleteArticle }) {
       <section className="saved__cards">
         <div className="saved__cards-container">
           {savedArticles.length > 0 ? (
-            <div className="saved__cards-list">
+            <ul className="saved__cards-list">
               {savedArticles.map((article, index) => (
                 <ItemCard
                   key={index}
@@ -42,7 +42,7 @@ function SavedNews({ savedArticles, handleDeleteArticle }) {
                   savedArticles={savedArticles || []}
                 />
               ))}
-            </div>
+            </ul>
           ) : (
             <p className="saved__no-articles">No saved articles yet.</p>
           )}
