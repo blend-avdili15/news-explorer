@@ -55,6 +55,49 @@
 
 /* Tablet Version */
 
+@media screen and (max-width: 1243px) {
+  .about__heading {
+    width: 430px;
+  }
+
+  .about__image-container {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .about__content {
+    gap: 20px;
+  }
+
+  .about__heading {
+    width: 400px;
+  }
+
+  .about__image-container {
+    width: 350px;
+    height: 350px;
+    margin-left: 120px;
+  }
+
+  .about__subtitle {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 792px) {
+  .about__image-container {
+    width: 300px;
+    height: 300px;
+    margin-top: 35px;
+  }
+
+  .about__subtitle {
+    font-size: 15px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .about {
     flex-direction: column; /* Stack content */
@@ -84,11 +127,85 @@
   .about__image-container {
     width: 232px;
     height: 232px;
+    margin: 0;
   }
 
   .about__image {
     width: 232px;
     height: 232px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .about__heading {
+    width: 319px;
+  }
+
+  .about__subtitle {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 585px) {
+  .about {
+    padding: 0;
+    height: 752px;
+  }
+
+  .about__content {
+    width: 305px;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .about__image-container {
+    width: 272px;
+    height: 272px;
+    /* padding: 32px 24px 24px; */
+  }
+
+  .about__image {
+    width: 272px;
+    height: 272px;
+    margin-top: -60px;
+  }
+
+  .about__heading {
+    width: 400px;
+    /* height: 296px; */
+    /* padding: 0 8px; */
+    display: flex;
+    justify-content: center;
+    margin-top: -60px;
+  }
+
+  .about__title {
+    height: 40px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .about__subtitle {
+    /* height: 100px; */
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .about__heading {
+    width: 320px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .about__heading {
+    width: 300px;
+  }
+
+  .about__subtitle {
+    /* height: 100px; */
+    font-size: 12px;
   }
 }
 

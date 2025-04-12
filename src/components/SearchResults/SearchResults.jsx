@@ -17,7 +17,9 @@ function SearchResults({
   return (
     <div className="search">
       <div className="search__container">
-        <h2 className="search__title">Search Results</h2>
+        <div className="search__title-container">
+          <h2 className="search__title">Search Results</h2>
+        </div>
 
         <div className="search__cards-list">
           {articles.slice(0, visibleCount).map((article, index) => (
@@ -32,18 +34,20 @@ function SearchResults({
           ))}
         </div>
 
-        {visibleCount < articles.length && (
-          <button
-            className={`search__button ${
-              isLoggedIn
-                ? "search__button_logged-in"
-                : "search__button_logged-out"
-            }`}
-            onClick={() => setVisibleCount(visibleCount + 3)}
-          >
-            Show more
-          </button>
-        )}
+        <div className="search__button-container">
+          {visibleCount < articles.length && (
+            <button
+              className={`search__button ${
+                isLoggedIn
+                  ? "search__button_logged-in"
+                  : "search__button_logged-out"
+              }`}
+              onClick={() => setVisibleCount(visibleCount + 3)}
+            >
+              Show more
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
