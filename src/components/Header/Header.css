@@ -2,11 +2,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 32px 0 13px;
+  /* padding: 32px 0 13px; Changed*/
+  padding: 0;
   position: relative;
   border-bottom: 1px solid #c4c4c4;
   z-index: 5;
+  height: 80px;
 }
+
+/* * {
+  outline: red solid 1px;
+} */
 
 .header__title {
   display: flex;
@@ -35,8 +41,10 @@
   align-items: center;
   gap: 65px;
   margin-right: 104px;
-  margin-bottom: -31px;
+  /* margin-bottom: -31px; Changed*/
   list-style: none;
+  /* changed */
+  align-self: stretch;
 }
 
 .header__nav-list {
@@ -45,20 +53,25 @@
   padding: 0;
   display: flex;
   gap: 40px;
-  align-items: center;
+  /* changed */
+  align-items: stretch;
+  align-self: stretch;
 }
 
 .header__nav-item {
   display: flex;
-  /* align-items: center; */
+  align-items: center;
   text-decoration: none;
   font-size: 18px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   color: white;
-  padding: 0 0 12px;
+  /* Changed */
+  /* padding: 0 0 12px; */
+  padding: 0;
   margin: 0 15px;
-  height: 35px;
+  /* height: 35px; Changed */
+  height: 100%;
   border-bottom: 2px solid transparent;
   list-style: none;
 }
@@ -92,7 +105,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-bottom: 35px;
+  /* margin-bottom: 35px; */
   list-style: none;
 }
 
@@ -140,9 +153,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  align-self: stretch;
   gap: 42px;
   margin-right: 104px;
-  margin-bottom: -31px;
+  /* margin-bottom: -31px;Changed*/
   list-style: none;
 }
 
@@ -155,7 +169,7 @@
   border-radius: 100px;
   background: none;
   border: 1px solid #ffffff;
-  margin-bottom: 28px;
+  /* margin-bottom: 28px;Changed */
 }
 
 .header__register:hover {
@@ -205,18 +219,14 @@
   opacity: 0.8;
 }
 
-/* Tablet Version */
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .header {
-    flex-direction: row;
-    padding: 23px 40px 13px;
     align-items: center;
   }
 
   .header__title {
     font-size: 18px;
-    margin-left: 0;
+    margin-left: 25px;
   }
 
   .header__logged-in,
@@ -226,158 +236,25 @@
     gap: 20px;
   }
 
-  .header__profile {
-    width: auto;
-  }
-
-  .header__nav-item {
-    height: 34px;
-  }
-}
-
-@media screen and (max-width: 630px) {
-  .header__register {
-    width: 130px;
-  }
-  .header__nav-item {
-  }
-
-  .header__container {
-    margin-right: -30px;
-  }
-}
-
-@media screen and (max-width: 615px) {
-  .header__logged-in,
   .header__nav-list {
-    gap: 5px;
-    /* width: 270px; */
+    align-self: unset;
+    gap: 0;
   }
 
   .header__profile {
-    margin-right: -26px;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .header__menu-button {
-    display: block;
-    margin-right: 24px;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
+    margin-right: 7px;
   }
 
-  .header__title {
-    margin-left: -20px;
-    font-family: "Roboto-Slab", sans-serif;
-    font-size: 16px;
-    font-weight: 700;
+  .header__nav-item {
+    height: 80px;
   }
 
-  .header__menu-icon {
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    top: 36px;
-    right: 20px;
-  }
-
-  .header__logged-in,
-  .header__container {
-    display: none;
-  }
-
-  .header__mobile-menu {
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 16px 24px;
-    border-top: 1px solid #c4c4c4;
-  }
-
-  .header__mobile-menu-link {
-    font-size: 18px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    /* margin-left: 20px; */
-  }
-
-  .header__menu-saved-link {
-    font-size: 18px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    margin-left: 30px;
-  }
-
-  .header__menu-register-button {
-    border-radius: 30px;
-    /* width: 272px; */
-    height: 56px;
-    background-color: black;
-    color: white;
-    border: 1px solid white;
-    cursor: pointer;
-    font-family: "Roboto", sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-  }
-
-  .header__menu-out-button {
-    border-radius: 30px;
-    /* width: 272px; */
-    height: 56px;
-    background-color: black;
-    color: white;
-    border: 1px solid white;
-    cursor: pointer;
-  }
-
-  .header__mobile-menu-link:hover,
-  .header__menu-saved-link:hover,
-  .header__menu-register-button:hover,
-  .header__menu-out-button:hover {
-    opacity: 0.7;
-  }
-
-  .header_open-mobile {
-    background-color: black;
-  }
-
-  .header__title_white {
-    color: white;
-  }
-}
-
-@media screen and (max-width: 540px) {
   .header__register {
     width: 130px;
   }
-  .header__nav-item {
-  }
-
-  .header__container {
-    margin-right: -30px;
-  }
 }
 
-@media screen and (max-width: 450px) {
-  .header {
-    /* width: 100%;
-    max-width: 375px;
-    padding-right: 0; */
-  }
-
+@media screen and (max-width: 602px) {
   .header__menu-button {
     display: block;
     margin-right: 24px;
@@ -388,18 +265,14 @@
   }
 
   .header__title {
-    margin-left: -20px;
     font-family: "Roboto-Slab", sans-serif;
     font-size: 16px;
     font-weight: 700;
   }
 
   .header__menu-icon {
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    top: 36px;
-    right: 20px;
+    display: flex;
+    align-items: center;
   }
 
   .header__logged-in,
@@ -416,17 +289,7 @@
     border-top: 1px solid #c4c4c4;
   }
 
-  .header__mobile-menu-link {
-    font-size: 18px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    /* margin-left: 20px; */
-  }
-
+  .header__mobile-menu-link,
   .header__menu-saved-link {
     font-size: 18px;
     font-family: "Roboto", sans-serif;
@@ -435,128 +298,13 @@
     border: none;
     color: white;
     cursor: pointer;
-    margin-left: 30px;
-  }
-
-  .header__menu-register-button {
-    border-radius: 30px;
-    /* width: 272px; */
-    height: 56px;
-    background-color: black;
-    color: white;
-    border: 1px solid white;
-    cursor: pointer;
-    font-family: "Roboto", sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-  }
-
-  .header__menu-out-button {
-    border-radius: 30px;
-    /* width: 272px; */
-    height: 56px;
-    background-color: black;
-    color: white;
-    border: 1px solid white;
-    cursor: pointer;
-  }
-
-  .header__mobile-menu-link:hover,
-  .header__menu-saved-link:hover,
-  .header__menu-register-button:hover,
-  .header__menu-out-button:hover {
-    opacity: 0.7;
-  }
-
-  .header_open-mobile {
-    background-color: black;
-  }
-
-  .header__title_white {
-    color: white;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .header {
-    width: 100%;
-    max-width: 230px;
-    padding-right: 34px;
-  }
-
-  .header__menu-button {
-    display: block;
-    margin-right: 24px;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-
-  .header__title {
-    margin-left: -20px;
-    font-family: "Roboto-Slab", sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-  }
-
-  .header__menu-icon {
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    top: 36px;
-    right: 20px;
-  }
-
-  .header__logged-in,
-  .header__container {
-    display: none;
-  }
-
-  .header__mobile-menu {
-    background-color: black;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 16px 24px;
-    border-top: 1px solid #c4c4c4;
-  }
-
-  .header__mobile-menu-link {
-    font-size: 18px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    /* margin-left: 20px; */
   }
 
   .header__menu-saved-link {
-    font-size: 18px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
     margin-left: 30px;
   }
 
-  .header__menu-register-button {
-    border-radius: 30px;
-    width: 272px;
-    height: 56px;
-    background-color: black;
-    color: white;
-    border: 1px solid white;
-    cursor: pointer;
-    font-family: "Roboto", sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-  }
-
+  .header__menu-register-button,
   .header__menu-out-button {
     border-radius: 30px;
     width: 272px;
@@ -565,6 +313,9 @@
     color: white;
     border: 1px solid white;
     cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
   }
 
   .header__mobile-menu-link:hover,
