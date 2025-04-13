@@ -8,17 +8,18 @@ function SearchResults({
   handleSaveArticle,
   handleDeleteArticle,
   savedArticles = [],
+  isLoggedIn,
 }) {
   const [visibleCount, setVisibleCount] = useState(3);
 
   if (!articles || articles.length === 0) return null;
 
   return (
-    <div className="search__results">
-      <div className="search__results-container">
-        <h2 className="search__results-title">Search Results</h2>
+    <div className="search">
+      <div className="search__container">
+        <h2 className="search__title">Search Results</h2>
 
-        <div className="cards__list">
+        <ul className="search__cards-list">
           {articles.slice(0, visibleCount).map((article, index) => (
             <ItemCard
               key={index}
@@ -26,18 +27,25 @@ function SearchResults({
               handleSaveClick={handleSaveArticle}
               handleDeleteArticle={handleDeleteArticle}
               savedArticles={savedArticles}
+              isLoggedIn={isLoggedIn}
             />
           ))}
-        </div>
+        </ul>
 
-        {visibleCount < articles.length && (
-          <button
-            className="search__results-button"
-            onClick={() => setVisibleCount(visibleCount + 3)}
-          >
-            Show more
-          </button>
-        )}
+        <div className="search__button-container">
+          {visibleCount < articles.length && (
+            <button
+              className={`search__button ${
+                isLoggedIn
+                  ? "search__button_logged-in"
+                  : "search__button_logged-out"
+              }`}
+              onClick={() => setVisibleCount(visibleCount + 3)}
+            >
+              Show more
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

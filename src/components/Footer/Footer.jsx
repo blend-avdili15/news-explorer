@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import github from "../../images/github.svg";
-import linkedIn from "../../images/linkedIn.svg";
+import linkedIn from "../../images/linkedin.svg";
 
 function Footer({}) {
   return (
@@ -10,26 +10,52 @@ function Footer({}) {
         © {new Date().getFullYear()} Supersite, Powered by News API
       </p>
 
-      <div className="footer__nav">
-        <div className="footer__nav-links">
-          <a href="/" className="footer__nav-item">
-            Home
-          </a>
-          <a href="https://tripleten.com" className="footer__nav-item">
-            TripleTen
-          </a>
-        </div>
+      <nav className="footer__nav">
+        <ul className="footer__nav-links">
+          <li>
+            <a
+              href="/"
+              className="footer__nav-item"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://tripleten.com"
+              className="footer__nav-item"
+              target="_blank"
+              rel="noreferrer"
+            >
+              TripleTen
+            </a>
+          </li>
+        </ul>
 
-        <div className="footer__nav-social">
-          <a href="https://github.com/dashboard">
-            <img src={github} alt="github" className="footer__icon" />
-          </a>
+        <ul className="footer__nav-social">
+          <li>
+            <a
+              href="https://github.com/dashboard"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={github} alt="github" className="footer__icon" />
+            </a>
+          </li>
 
-          <a href="https://www.linkedin.com/in/blend-avdili-820985139/">
-            <img src={linkedIn} alt="facebook" className="footer__icon" />
-          </a>
-        </div>
-      </div>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/blend-avdili-820985139/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={linkedIn} alt="facebook" className="footer__icon" />
+            </a>
+          </li>
+        </ul>
+      </nav>
     </footer>
   );
 }

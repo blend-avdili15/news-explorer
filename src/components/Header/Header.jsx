@@ -10,7 +10,7 @@ import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
 
 function Header({
   isLoggedIn,
-  handleRegisterClick,
+  handleLoginClick,
   handleSignOutClick,
   isModalOpen,
 }) {
@@ -28,7 +28,7 @@ function Header({
     <header
       className={`header ${isMobileMenuOpen ? "header_open-mobile" : ""}`}
     >
-      <h2
+      <p
         className={`header__title ${
           isMobileMenuOpen
             ? "header__title_white"
@@ -38,7 +38,7 @@ function Header({
         }`}
       >
         NewsExplorer
-      </h2>
+      </p>
 
       {!isModalOpen && (
         <button className="header__menu-button" onClick={toggleMobileMenu}>
@@ -53,40 +53,46 @@ function Header({
       )}
 
       {isLoggedIn ? (
-        <div className="header__logged-in">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `header__nav-item ${
-                isSavedNews ? "header__nav-item_black" : ""
-              } ${
-                isActive
-                  ? isSavedNews
-                    ? "header__nav-item_active_black"
-                    : "header__nav-item_active"
-                  : ""
-              }`
-            }
-          >
-            Home
-          </NavLink>
+        <nav className="header__logged-in">
+          <ul className="header__nav-list">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `header__nav-item ${
+                    isSavedNews ? "header__nav-item_black" : ""
+                  } ${
+                    isActive
+                      ? isSavedNews
+                        ? "header__nav-item_active_black"
+                        : "header__nav-item_active"
+                      : ""
+                  }`
+                }
+              >
+                Home
+              </NavLink>
+            </li>
 
-          <NavLink
-            to="/savednews"
-            className={({ isActive }) =>
-              `header__nav-item ${
-                isSavedNews ? "header__nav-item_black" : ""
-              } ${
-                isActive
-                  ? isSavedNews
-                    ? "header__nav-item_active_black"
-                    : "header__nav-item_active"
-                  : ""
-              }`
-            }
-          >
-            Saved articles
-          </NavLink>
+            <li>
+              <NavLink
+                to="/savednews"
+                className={({ isActive }) =>
+                  `header__nav-item ${
+                    isSavedNews ? "header__nav-item_black" : ""
+                  } ${
+                    isActive
+                      ? isSavedNews
+                        ? "header__nav-item_active_black"
+                        : "header__nav-item_active"
+                      : ""
+                  }`
+                }
+              >
+                Saved articles
+              </NavLink>
+            </li>
+          </ul>
 
           <div
             className={`header__profile ${
@@ -107,67 +113,89 @@ function Header({
               alt="header-arrow"
             />
           </div>
-        </div>
+        </nav>
       ) : (
-        <div className="header__container">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `header__nav-item ${isActive ? "header__nav-item_active" : ""}`
-            }
-          >
-            Home
-          </NavLink>
+        <nav className="header__container">
+          <ul className="header__nav-list">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `header__nav-item ${
+                    isActive ? "header__nav-item_active" : ""
+                  }`
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+          </ul>
 
-          <button onClick={handleRegisterClick} className="header__register">
+          <button onClick={handleLoginClick} className="header__register">
             Sign in
           </button>
-        </div>
+        </nav>
       )}
 
       {isMobileMenuOpen && (
-        <div className="mobile-menu">
-          <button
-            className="menu__home-link"
-            onClick={() => {
-              setIsMobileMenuOpen(false);
-              navigate("/");
-            }}
-          >
-            Home
-          </button>
-
-          {isLoggedIn ? (
+        <div className="header__mobile-menu">
+          {!isLoggedIn && (
             <>
               <button
-                className="menu__saved-link"
+                className="header__mobile-menu-link"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  navigate("/savednews");
+                  navigate("/");
                 }}
               >
-                Saved articles
+                Home
               </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  handleLoginClick();
+                }}
+                className="header__menu-register-button"
+              >
+                Sign in
+              </button>
+            </>
+          )}
+
+          {isLoggedIn && (
+            <>
+              {isSavedNews ? (
+                <button
+                  className="header__mobile-menu-link"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    navigate("/");
+                  }}
+                >
+                  Home
+                </button>
+              ) : (
+                <button
+                  className="header__mobile-menu-link"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    navigate("/savednews");
+                  }}
+                >
+                  Saved articles
+                </button>
+              )}
+
               <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   handleSignOutClick();
                 }}
-                className="menu-out__button"
+                className="header__menu-out-button"
               >
                 Sign out
               </button>
             </>
-          ) : (
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                handleRegisterClick();
-              }}
-              className="menu-register__button"
-            >
-              Sign in
-            </button>
           )}
         </div>
       )}

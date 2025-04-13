@@ -1,6 +1,5 @@
 import React from "react";
 import "./About.css";
-import author from "../../images/avatar.svg";
 import selfie from "../../images/selfie2.jpeg";
 
 function About() {

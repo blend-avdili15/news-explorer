@@ -6,9 +6,9 @@ import { useLocation } from "react-router-dom";
 function ItemCard({
   handleDeleteArticle,
   handleSaveClick,
-  saved,
   article,
   savedArticles = [],
+  isLoggedIn,
 }) {
   const currentUser = useContext(CurrentUserContext);
   const location = useLocation();
@@ -31,7 +31,7 @@ function ItemCard({
   };
 
   return (
-    <li className="card">
+    <article className="card">
       <img
         className="card__image"
         src={
@@ -39,7 +39,7 @@ function ItemCard({
             ? article.urlToImage
             : "https://picsum.photos/200/300"
         }
-        alt={article.title}
+        alt={article.title || "News article image"}
       />
 
       {isSavedNewsPage && (
@@ -56,11 +56,20 @@ function ItemCard({
           />
         </div>
       ) : (
-        <button
-          onClick={handleBookmarkClick}
-          className={bookmarkButtonClass}
-          aria-label="Save article"
-        />
+        <div
+          className={`card__save-container ${
+            !isLoggedIn ? "card__save-container_logged-out" : ""
+          }`}
+        >
+          {!isLoggedIn && (
+            <p className="card__save-hover">Sign in to save articles</p>
+          )}
+          <button
+            onClick={handleBookmarkClick}
+            className={bookmarkButtonClass}
+            aria-label={isBookmarked ? "Unsave article" : "Save article"}
+          />
+        </div>
       )}
 
       <div className="card__content">
@@ -77,7 +86,7 @@ function ItemCard({
           {article.source?.name || "Unknown Source"}
         </p>
       </div>
-    </li>
+    </article>
   );
 }
 

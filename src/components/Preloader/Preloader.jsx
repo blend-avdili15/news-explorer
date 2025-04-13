@@ -6,7 +6,7 @@ function Preloader({ isLoading }) {
 
   return (
     <div className="preloader">
-      <div className="circle-preloader"></div>
+      <div className="preloader-circle"></div>
       <p className="preloader__text">Searching for news...</p>
     </div>
   );

@@ -17,13 +17,13 @@ function SavedNews({ savedArticles, handleDeleteArticle }) {
       : keywords.join(", ");
 
   return (
-    <div className="saved__news">
+    <div className="saved">
       <div className="saved__content">
-        <p className="saved__header">Saved articles</p>
-        <h2 className="saved__title">
+        <h1 className="saved__header">Saved articles</h1>
+        <p className="saved__title">
           {currentUser?.username || "User"}, you have {savedArticles.length}{" "}
           saved <span className="saved__title-span">articles</span>
-        </h2>
+        </p>
         <p className="saved__keywords">
           By keywords:
           <span className="saved__keywords-span">{keywordDisplay}</span>
@@ -33,7 +33,7 @@ function SavedNews({ savedArticles, handleDeleteArticle }) {
       <section className="saved__cards">
         <div className="saved__cards-container">
           {savedArticles.length > 0 ? (
-            <div className="cards__list">
+            <ul className="saved__cards-list">
               {savedArticles.map((article, index) => (
                 <ItemCard
                   key={index}
@@ -42,7 +42,7 @@ function SavedNews({ savedArticles, handleDeleteArticle }) {
                   savedArticles={savedArticles || []}
                 />
               ))}
-            </div>
+            </ul>
           ) : (
             <p className="saved__no-articles">No saved articles yet.</p>
           )}
