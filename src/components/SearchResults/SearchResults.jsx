@@ -17,9 +17,7 @@ function SearchResults({
   return (
     <div className="search">
       <div className="search__container">
-        <div className="search__title-container">
-          <h2 className="search__title">Search Results</h2>
-        </div>
+        <h2 className="search__title">Search Results</h2>
 
         <ul className="search__cards-list">
           {articles.slice(0, visibleCount).map((article, index) => (

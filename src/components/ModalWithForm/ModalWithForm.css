@@ -32,7 +32,6 @@
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 00;
-  /* margin-bottom: 24px; */
 }
 
 .modal__close {
@@ -178,12 +177,8 @@
   text-decoration: underline;
 }
 
-/* * {
-  outline: thin solid red;
-} */
-
 /* Tablet Version */
-/* 1280 */
+
 @media screen and (max-width: 768px) {
   .modal__content {
     padding: 20px;
@@ -226,7 +221,6 @@
     top: -45px;
   }
 }
-/* 650 */
 @media screen and (max-width: 445px) {
   .modal {
     align-items: stretch;
@@ -234,18 +228,8 @@
 
   .modal__content {
     max-height: none;
-    /* margin-top: 82px; */
     margin-top: 93px;
     border-radius: 16px 16px 0 0;
-  }
-
-  .modal__input {
-  }
-
-  .modal__submit {
-  }
-
-  .modal__switch-button {
   }
 
   .modal__close {

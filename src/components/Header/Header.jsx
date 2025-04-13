@@ -10,7 +10,6 @@ import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext";
 
 function Header({
   isLoggedIn,
-  handleRegisterClick,
   handleLoginClick,
   handleSignOutClick,
   isModalOpen,
@@ -166,7 +165,6 @@ function Header({
           {isLoggedIn && (
             <>
               {isSavedNews ? (
-                // If on Saved News, show Home
                 <button
                   className="header__mobile-menu-link"
                   onClick={() => {
@@ -177,7 +175,6 @@ function Header({
                   Home
                 </button>
               ) : (
-                // If on Home, show Saved Articles
                 <button
                   className="header__mobile-menu-link"
                   onClick={() => {

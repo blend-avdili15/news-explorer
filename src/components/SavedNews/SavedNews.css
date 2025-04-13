@@ -2,10 +2,6 @@
   background-color: white;
 }
 
-/* * {
-  outline: red solid 1px;
-} */
-
 .saved__content {
   margin-top: 40px;
   margin-bottom: 56px;
@@ -62,7 +58,6 @@
 
 .saved__cards-container {
   width: 100%;
-  /* padding: 60px 106px 60px 102px; */
   padding: 60px 0;
 }
 
@@ -125,20 +120,12 @@
 }
 
 @media screen and (max-width: 434px) {
-  .saved__content {
-  }
   .saved__header {
     width: 200px;
   }
 
-  .saved__title {
-  }
-
   .saved__keywords {
     width: 282px;
-  }
-
-  .saved__cards-container {
   }
 }
 

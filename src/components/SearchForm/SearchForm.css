@@ -57,38 +57,22 @@
 }
 
 @media screen and (max-width: 768px) {
-  .search-form {
-  }
-
   .search-form__container {
     max-width: 452px;
-  }
-
-  .search-form__input {
-  }
-
-  .search-form__button {
   }
 }
 
 @media screen and (max-width: 485px) {
-  .search-form {
-  }
-
   .search-form__container {
     max-width: 390px;
     display: flex;
     justify-content: center;
   }
 
-  .search-form__input {
-  }
-
   .search-form__button {
     margin-top: 78px;
     max-width: 390px;
     margin-right: 5px;
-    /* width: 100%; */
   }
 }
 
@@ -105,9 +89,6 @@
 }
 
 @media screen and (max-width: 320px) {
-  .search-form {
-  }
-
   .search-form__container {
     max-width: 288px;
   }
@@ -115,13 +96,11 @@
   .search-form__input {
     margin-bottom: 24px;
     margin-left: -2px;
-    /* max-width: 288px; */
   }
 
   .search-form__button {
     margin-top: 78px;
     max-width: 288px;
     margin-right: 5px;
-    /* width: 100%; */
   }
 }

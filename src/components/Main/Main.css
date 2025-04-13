@@ -90,7 +90,6 @@
     width: 315px;
     height: 72px;
     font-size: 18px;
-    /* margin-bottom: 122px; */
   }
 }
 
@@ -129,7 +128,6 @@
 @media screen and (max-width: 320px) {
   .main__content {
     width: 100%;
-    /* max-width: 315px; */
     height: 480px;
   }
 
@@ -143,7 +141,6 @@
     height: 80px;
     font-size: 34px;
     margin: 0;
-    /* margin-top: 30px; */
     margin-bottom: 10px;
   }
 
@@ -151,7 +148,6 @@
     width: 288px;
     height: 72px;
     font-size: 18px;
-    /* margin-bottom: 122px; */
   }
 
   .main__break-desktop {

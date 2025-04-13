@@ -6,7 +6,6 @@ import { useLocation } from "react-router-dom";
 function ItemCard({
   handleDeleteArticle,
   handleSaveClick,
-  saved,
   article,
   savedArticles = [],
   isLoggedIn,

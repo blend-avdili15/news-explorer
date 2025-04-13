@@ -10,7 +10,7 @@ export const fetchNews = async (query) => {
   }
 
   const fromDate = new Date();
-  fromDate.setDate(fromDate.getDate() - 7); // Get news from past 7 days
+  fromDate.setDate(fromDate.getDate() - 7);
   const toDate = new Date();
 
   const url = `${BASE_URL}?q=${encodeURIComponent(
@@ -25,7 +25,7 @@ export const fetchNews = async (query) => {
       throw new Error("Something went wrong. Please try again later.");
     }
     const data = await response.json();
-    return data.articles; // Extracts the articles array
+    return data.articles;
   } catch (error) {
     throw new Error(error.message);
   }
